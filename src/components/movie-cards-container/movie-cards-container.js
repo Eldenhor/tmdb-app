@@ -1,14 +1,19 @@
+import './movie-cards-container.css'
+
 import React from "react";
 import MovieCard from "../movie-card";
+import CardsGrid from "../cards-grid";
+import MovieDetails from "../movie-details";
 
-const MovieCardContainer = ({cardName, imgCardPath}) => {
+const MovieCardContainer = () => {
 
   return (
 
-    <div className="d-flex justify-content-around">
-      <MovieCard cardName={cardName} imgCardPath={imgCardPath}/>
-      <MovieCard cardName={cardName} imgCardPath={imgCardPath}/>
-      <MovieCard cardName={cardName} imgCardPath={imgCardPath}/>
+    <div className="movie-card-container">
+      <CardsGrid first={<MovieCard/>} second={<MovieDetails/>}/>
+      <CardsGrid first={<MovieCard/>} second={<MovieDetails/>}/>
+      <CardsGrid first={<MovieCard/>} second={<MovieDetails/>}/>
+      <CardsGrid first={<MovieCard/>} second={<MovieDetails/>}/>
     </div>
 
   );
