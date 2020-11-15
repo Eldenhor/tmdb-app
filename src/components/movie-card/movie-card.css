@@ -1,0 +1,7 @@
+.movie-card {
+    max-width: 140px;
+}
+
+.movie-card > img {
+    width: 100%;
+}
