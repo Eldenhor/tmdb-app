@@ -1,0 +1,5 @@
+.cards-grid {
+    height: 280px;
+    display: flex;
+    align-items: center;
+}
