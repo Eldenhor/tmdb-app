@@ -1,7 +1,6 @@
 import "./movie-details.css";
 
 import React from "react";
-import withData from "../hoc-helpers";
 
 const MovieDetails = ({data}) => {
 
@@ -16,4 +15,4 @@ const MovieDetails = ({data}) => {
   );
 };
 
-export default withData(MovieDetails);
+export default MovieDetails;

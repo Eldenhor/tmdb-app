@@ -11,6 +11,9 @@ export default class App extends Component {
         <Header/>
 
         <MovieCardContainer />
+        <MovieCardContainer />
+        <MovieCardContainer />
+        <MovieCardContainer />
       </div>
     );
   }

@@ -44,7 +44,8 @@ const withData = (View) => {
       const id = Math.floor(Math.random() * 800);
 
       this.setState({
-        loading: true
+        loading: true,
+        error: false
       });
 
       this.tmdb

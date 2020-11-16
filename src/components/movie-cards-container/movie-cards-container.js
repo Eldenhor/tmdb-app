@@ -1,22 +1,21 @@
-import './movie-cards-container.css'
+import "./movie-cards-container.css";
 
 import React from "react";
 import MovieCard from "../movie-card";
 import CardsGrid from "../cards-grid";
 import MovieDetails from "../movie-details";
+import withData from "../hoc-helpers/with-data";
 
-const MovieCardContainer = () => {
+const MovieCardContainer = ({data}) => {
 
   return (
 
     <div className="movie-card-container">
-      <CardsGrid first={<MovieCard/>} second={<MovieDetails/>}/>
-      <CardsGrid first={<MovieCard/>} second={<MovieDetails/>}/>
-      <CardsGrid first={<MovieCard/>} second={<MovieDetails/>}/>
-      <CardsGrid first={<MovieCard/>} second={<MovieDetails/>}/>
+      <CardsGrid poster={<MovieCard data={data}/>}
+                 details={<MovieDetails data={data}/>}/>
     </div>
 
   );
 };
 
-export default MovieCardContainer;
+export default withData(MovieCardContainer);
