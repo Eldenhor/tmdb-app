@@ -1,3 +1,5 @@
 .card-body {
-    padding-top: 8px
+    height: 200px;
+    padding-top: 8px;
+    overflow: hidden;
 }

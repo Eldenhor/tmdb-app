@@ -1,11 +1,11 @@
 import "./movie-card.css";
 
-import React, { Component } from "react";
+import React from "react";
 import withData from '../hoc-helpers'
 
 const MovieCard = ({data}) => {
 
-  const {poster_path, vote_average, original_title} = data;
+  const {poster_path, vote_average} = data;
 
   return (
     <div className="movie-card">
@@ -18,9 +18,6 @@ const MovieCard = ({data}) => {
         <span className="badge badge-success">{vote_average}</span>
       </h4>
 
-      <div>
-        <h6 className="card-title">{original_title}</h6>
-      </div>
     </div>
   );
 };
