@@ -1,7 +1,6 @@
 import "./movie-card.css";
 
 import React from "react";
-import withData from '../hoc-helpers'
 
 const MovieCard = ({data}) => {
 
@@ -22,4 +21,4 @@ const MovieCard = ({data}) => {
   );
 };
 
-export default withData(MovieCard);
+export default MovieCard;
