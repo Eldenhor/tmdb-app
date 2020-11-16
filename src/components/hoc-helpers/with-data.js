@@ -41,7 +41,6 @@ const withData = (View) => {
     };
 
     updateMovie = () => {
-      const id = Math.floor(Math.random() * 800);
 
       this.setState({
         loading: true,
@@ -49,7 +48,7 @@ const withData = (View) => {
       });
 
       this.tmdb
-        .getMovie(id)
+        .getMovie(this.props.idx)
         .then(this.onMovieLoaded)
         .catch(this.onError);
     };
