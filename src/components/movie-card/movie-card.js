@@ -6,89 +6,91 @@ import Spinner from "../spinner";
 import ErrorIndicator from "../error-indicator";
 
 
-export default class MovieCard extends Component {
-
-  tmdb = new TmdbService();
-
-  state = {
-    loading: true,
-    error: false,
-    movie: {
-      id: 0
-    }
-  };
-
-  componentDidMount() {
-    this.updateMovie();
-    //setInterval(this.updateMovie, 5000)
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.interval);
-  }
-
-  onMovieLoaded = (movie) => {
-    this.setState({
-      loading: false,
-      movie
-    });
-  };
-
-  onError = (err) => {
-    //  this.setState({
-    //    error: true,
-    //    loading: false
-    //  })
-    this.updateMovie();
-  };
-
-  updateMovie = () => {
-    const id = Math.floor(Math.random() * 800);
-
-    this.tmdb
-      .getMovie(id)
-      .then(this.onMovieLoaded)
-      .catch(this.onError);
-  };
-
+class MovieCard extends Component {
 
   render() {
-    const {movie, error, loading} = this.state;
-
-    const hasData = !(loading || error);
-
-    const errorMessage = error ? <ErrorIndicator/> : null;
-    const spinner = loading ? <Spinner/> : null;
-    const content = hasData ? <RenderMovie movie={movie}/> : null;
+    const {poster_path, vote_average, original_title} = this.props.data;
 
     return (
       <div className="movie-card">
-        {errorMessage}
-        {spinner}
-        {content}
+        <div className="card">
+          <img src={`https://image.tmdb.org/t/p/w200${poster_path}`}
+               alt="movie"/>
+        </div>
+
+        <h4>
+          <span className="badge badge-success">{vote_average}</span>
+        </h4>
+
+        <div>
+          <h6 className="card-title">{original_title}</h6>
+        </div>
       </div>
     );
   }
 };
 
-const RenderMovie = ({movie}) => {
-  const {poster_path, original_title, vote_average} = movie;
 
-  return (
-    <React.Fragment>
-      <div className="card">
-        <img src={`https://image.tmdb.org/t/p/w200${poster_path}`}
-             alt="movie"/>
-      </div>
+const withData = (View) => {
 
-      <h4>
-        <span className="badge badge-success">{vote_average}</span>
-      </h4>
+  return class extends Component {
 
-      <div>
-        <h6 className="card-title">{original_title}</h6>
-      </div>
-    </React.Fragment>
-  );
+    tmdb = new TmdbService();
+
+    state = {
+      loading: true,
+      error: false,
+      data: {}
+    };
+
+    componentDidMount() {
+      this.updateMovie();
+      //setInterval(this.updateMovie, 5000)
+    }
+
+    componentWillUnmount() {
+      clearInterval(this.interval);
+    }
+
+    onMovieLoaded = (data) => {
+      this.setState({
+        loading: false,
+        data
+      });
+    };
+
+    onError = (err) => {
+      this.setState({
+        error: true,
+        loading: false
+      });
+      //this.updateMovie();
+    };
+
+    updateMovie = () => {
+      const id = Math.floor(Math.random() * 800);
+
+      this.tmdb
+        .getMovie(id)
+        .then(this.onMovieLoaded)
+        .catch(this.onError);
+    };
+
+    render() {
+      const {data, error, loading} = this.state;
+
+      if (loading) {
+        return <Spinner/>;
+      }
+
+      if (error) {
+        return <ErrorIndicator/>;
+      }
+
+      return <View data={data}/>;
+    }
+  };
 };
+
+export default withData(MovieCard);
 

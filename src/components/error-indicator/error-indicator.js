@@ -1,8 +1,10 @@
+import './erorr-indicator.css'
+
 import React from 'react';
 
 const ErrorIndicator = () => {
   return(
-    <div className="table-danger">
+    <div className="error-indicator">
       Error
     </div>
   )
