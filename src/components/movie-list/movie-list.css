@@ -1,0 +1,10 @@
+.movie-list > * {
+    width: 640px;
+    height: 260px;
+    margin-top: 20px;
+}
+
+.movie-list {
+    margin-right: auto;
+    margin-left: auto;
+}

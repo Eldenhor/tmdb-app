@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import Header from "../header";
-import MovieCardContainer from "../movie-cards-container";
+import MovieList from "../movie-list";
 
 export default class App extends Component {
 
@@ -10,10 +10,7 @@ export default class App extends Component {
       <div>
         <Header/>
 
-        <MovieCardContainer />
-        <MovieCardContainer />
-        <MovieCardContainer />
-        <MovieCardContainer />
+        <MovieList/>
       </div>
     );
   }
