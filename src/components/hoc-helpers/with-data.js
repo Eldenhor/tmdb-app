@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from "react";
 
 import TmdbService from "../../services/tmdb-service";
 import Spinner from "../spinner";
@@ -18,7 +18,7 @@ const withData = (View) => {
 
     componentDidMount() {
       this.updateMovie();
-      //setInterval(this.updateMovie, 5000)
+      //setInterval(this.updateMovie, 5000);
     }
 
     componentWillUnmount() {
@@ -33,15 +33,19 @@ const withData = (View) => {
     };
 
     onError = (err) => {
-      this.setState({
-        error: true,
-        loading: false
-      });
-      //this.updateMovie();
+      // this.setState({
+      //   error: true,
+      //   loading: false
+      // });
+      this.updateMovie();
     };
 
     updateMovie = () => {
       const id = Math.floor(Math.random() * 800);
+
+      this.setState({
+        loading: true
+      });
 
       this.tmdb
         .getMovie(id)

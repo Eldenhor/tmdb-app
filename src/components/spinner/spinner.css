@@ -1,8 +1,9 @@
 .spinner {
-    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100%;
     width: 100%;
-    background-color: #000000;
 }
 
 @keyframes ldio-dfh2gwvv78s-1 {

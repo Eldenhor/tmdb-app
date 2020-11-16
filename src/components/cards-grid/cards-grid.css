@@ -1,5 +1,15 @@
 .cards-grid {
-    height: 280px;
+    height: 260px;
+    width: 680px;
     display: flex;
     align-items: center;
+}
+
+.card-first {
+    width: 280px;
+    height: 207px;
+}
+
+.card-second {
+    width: 400px;
 }
