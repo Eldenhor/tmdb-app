@@ -9,46 +9,29 @@ import ErrorIndicator from "../error-indicator";
 class MovieCard extends Component {
 
   render() {
-    const {movie, error, loading} = this.props.data;
-
-    const hasData = !(loading || error);
-
-    const errorMessage = error ? <ErrorIndicator/> : null;
-    const spinner = loading ? <Spinner/> : null;
-    const content = hasData ? <RenderMovie movie={movie}/> : null;
+    const {poster_path, vote_average, original_title} = this.props.data;
 
     return (
       <div className="movie-card">
-        {errorMessage}
-        {spinner}
-        {content}
+        <div className="card">
+          <img src={`https://image.tmdb.org/t/p/w200${poster_path}`}
+               alt="movie"/>
+        </div>
+
+        <h4>
+          <span className="badge badge-success">{vote_average}</span>
+        </h4>
+
+        <div>
+          <h6 className="card-title">{original_title}</h6>
+        </div>
       </div>
     );
   }
 };
 
-const RenderMovie = ({movie}) => {
-  const {poster_path, original_title, vote_average} = movie;
 
-  return (
-    <React.Fragment>
-      <div className="card">
-        <img src={`https://image.tmdb.org/t/p/w200${poster_path}`}
-             alt="movie"/>
-      </div>
-
-      <h4>
-        <span className="badge badge-success">{vote_average}</span>
-      </h4>
-
-      <div>
-        <h6 className="card-title">{original_title}</h6>
-      </div>
-    </React.Fragment>
-  );
-};
-
-const f = () => {
+const withData = (View) => {
 
   return class extends Component {
 
@@ -57,9 +40,7 @@ const f = () => {
     state = {
       loading: true,
       error: false,
-      movie: {
-        id: 0
-      }
+      data: {}
     };
 
     componentDidMount() {
@@ -71,19 +52,19 @@ const f = () => {
       clearInterval(this.interval);
     }
 
-    onMovieLoaded = (movie) => {
+    onMovieLoaded = (data) => {
       this.setState({
         loading: false,
-        movie
+        data
       });
     };
 
     onError = (err) => {
-      //  this.setState({
-      //    error: true,
-      //    loading: false
-      //  })
-      this.updateMovie();
+      this.setState({
+        error: true,
+        loading: false
+      });
+      //this.updateMovie();
     };
 
     updateMovie = () => {
@@ -96,10 +77,20 @@ const f = () => {
     };
 
     render() {
-      return <MovieCard data={this.state}/>
-    }
-  }
-}
+      const {data, error, loading} = this.state;
 
-export default f();
+      if (loading) {
+        return <Spinner/>;
+      }
+
+      if (error) {
+        return <ErrorIndicator/>;
+      }
+
+      return <View data={data}/>;
+    }
+  };
+};
+
+export default withData(MovieCard);
 
