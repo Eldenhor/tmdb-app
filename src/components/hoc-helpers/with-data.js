@@ -33,11 +33,11 @@ const withData = (View) => {
     };
 
     onError = (err) => {
-      // this.setState({
-      //   error: true,
-      //   loading: false
-      // });
-      this.updateMovie();
+       this.setState({
+         error: true,
+         loading: false
+       });
+      //this.updateMovie();
     };
 
     updateMovie = () => {
