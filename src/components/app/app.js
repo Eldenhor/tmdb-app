@@ -61,7 +61,7 @@ export default class App extends Component {
         <Header setLanguage={this.setLanguage} langActive={this.state.language}/>
         <PageButtons pageClick={this.pageClick}/>
 
-          <MovieList data={this.state.data}/>
+          <MovieList data={this.state.data} language={this.state.language}/>
       </div>
     );
   }
