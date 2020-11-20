@@ -16,6 +16,12 @@ const withData = (View) => {
       data: {}
     };
 
+    componentDidUpdate(prevProps) {
+      if ((this.props.idx !== prevProps.idx) || (this.props.language !== prevProps.language)) {
+        this.updateMovie()
+      }
+    }
+
     componentDidMount() {
       this.updateMovie();
       //setInterval(this.updateMovie, 5000);
@@ -48,7 +54,7 @@ const withData = (View) => {
       });
 
       this.tmdb
-        .getMovie(this.props.idx)
+        .getMovie(this.props.idx, this.props.language)
         .then(this.onMovieLoaded)
         .catch(this.onError);
     };
