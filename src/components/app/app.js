@@ -5,13 +5,15 @@ import MovieList from "../movie-list";
 import PageButtons from "../page-buttons";
 
 export default class App extends Component {
+
   state = {
     data: [
       {id: 550},
       {id: 551},
       {id: 552},
       {id: 553},
-    ]
+    ],
+    language: "en"
   };
 
   pageClick = (pgNumber) => {
@@ -44,16 +46,22 @@ export default class App extends Component {
 
     this.setState({
       data: pgData[`pg${pgNumber}`]
-    })
+    });
   };
+
+  setLanguage = (lang) => {
+    this.setState({
+      language: lang
+    })
+  }
 
   render() {
     return (
       <div>
-        <Header/>
+        <Header setLanguage={this.setLanguage} langActive={this.state.language}/>
         <PageButtons pageClick={this.pageClick}/>
 
-        <MovieList data={this.state.data}/>
+          <MovieList data={this.state.data}/>
       </div>
     );
   }
