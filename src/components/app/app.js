@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import Header from "../header";
 import MovieList from "../movie-list";
 import PageButtons from "../page-buttons";
+import SearchResultsList from "../search-results-list/search-results-list";
 
 export default class App extends Component {
 
@@ -13,9 +14,11 @@ export default class App extends Component {
       {id: 552},
       {id: 553},
     ],
-    language: "en"
+    language: "en",
+    searchValue: ''
   };
 
+  // test pages
   pageClick = (pgNumber) => {
     const pgData = {
       pg1: [
@@ -59,6 +62,9 @@ export default class App extends Component {
     return (
       <div>
         <Header setLanguage={this.setLanguage} langActive={this.state.language}/>
+
+        <SearchResultsList/>
+
         <PageButtons pageClick={this.pageClick}/>
 
           <MovieList data={this.state.data} language={this.state.language}/>
