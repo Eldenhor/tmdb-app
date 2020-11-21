@@ -13,6 +13,9 @@ const SearchResultItem = ({searchResultItemData}) => {
   } = searchResultItemData;
 
   const dateRegExp = /......$/;
+  const releaseDate = release_date === undefined
+    ? null
+    : <div className="text-warning font-weight-bold ml-2">{release_date.replace(dateRegExp, "")}</div>
 
   const voteBadge = vote_average === 0 ? null :
     <div className="badge badge-primary">{vote_average}</div>;
@@ -36,8 +39,7 @@ const SearchResultItem = ({searchResultItemData}) => {
       <div className="search-result-item">
         <div className="d-flex">
           <h5 className="card-title">{original_title}</h5>
-          <div
-            className="text-warning font-weight-bold ml-2">{release_date.replace(dateRegExp, "")}</div>
+          {releaseDate}
         </div>
         <div>{overview}</div>
       </div>

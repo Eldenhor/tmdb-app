@@ -15,7 +15,7 @@ export default class App extends Component {
       {id: 553},
     ],
     language: "en",
-    searchValue: ''
+    searchValue: ""
   };
 
   // test pages
@@ -55,25 +55,31 @@ export default class App extends Component {
   setLanguage = (lang) => {
     this.setState({
       language: lang
-    })
-  }
+    });
+  };
 
   onSearchChange = (searchValue) => {
-    this.setState({searchValue})
-  }
+    this.setState({searchValue});
+  };
+
 
   render() {
+
+    const visibleItems = this.state.searchValue === ""
+      ?
+      <React.Fragment>
+        <PageButtons pageClick={this.pageClick}/>
+        <MovieList data={this.state.data} language={this.state.language}/>
+      </React.Fragment>
+      : <SearchResultsList searchValue={this.state.searchValue}/>;
+
     return (
       <div>
         <Header setLanguage={this.setLanguage}
                 langActive={this.state.language}
                 onSearchChange={this.onSearchChange}/>
 
-        <SearchResultsList searchValue={this.state.searchValue}/>
-
-        <PageButtons pageClick={this.pageClick}/>
-
-          <MovieList data={this.state.data} language={this.state.language}/>
+        {visibleItems}
       </div>
     );
   }

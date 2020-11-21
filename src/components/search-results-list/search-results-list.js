@@ -17,7 +17,6 @@ const SearchResultsList = ({searchResult}) => {
 
   return (
     <div className="search-results-list">
-      search list results here: (test search = silicon valley)
       {resultList}
     </div>
   );
