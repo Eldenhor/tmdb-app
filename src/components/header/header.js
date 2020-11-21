@@ -4,12 +4,12 @@ import React from "react";
 import LanguageSwitch from "../language-switch";
 import SearchForm from "../search-form";
 
-const Header = ({setLanguage, langActive}) => {
+const Header = ({setLanguage, langActive, onSearchChange}) => {
   return (
     <div className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="header d-flex">
         <a className="navbar-brand" href="http://google.com">TMDB</a>
-        <SearchForm/>
+        <SearchForm onSearchChange={onSearchChange}/>
         <LanguageSwitch setLanguage={setLanguage} langActive={langActive}/>
       </div>
     </div>

@@ -58,12 +58,18 @@ export default class App extends Component {
     })
   }
 
+  onSearchChange = (searchValue) => {
+    this.setState({searchValue})
+  }
+
   render() {
     return (
       <div>
-        <Header setLanguage={this.setLanguage} langActive={this.state.language}/>
+        <Header setLanguage={this.setLanguage}
+                langActive={this.state.language}
+                onSearchChange={this.onSearchChange}/>
 
-        <SearchResultsList/>
+        <SearchResultsList searchValue={this.state.searchValue}/>
 
         <PageButtons pageClick={this.pageClick}/>
 
