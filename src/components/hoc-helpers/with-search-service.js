@@ -34,6 +34,12 @@ const withSearchService = (View) => {
       });
     };
 
+    componentDidUpdate(prevProps) {
+      if (this.props.searchValue !== prevProps.searchValue) {
+        this.updateSearchResults()
+      }
+    }
+
     updateSearchResults = () => {
       this.setState({
         loading: true,
@@ -42,9 +48,11 @@ const withSearchService = (View) => {
 
       this.tmdbSearchService
         // get search value from props this.props.searchValue
-        .getSearchResult("silicon")
+        .getSearchResult(this.props.searchValue)
         .then(this.onSearchResultsLoaded)
         .catch(this.onError);
+
+      console.log(this.props)
     };
 
 
