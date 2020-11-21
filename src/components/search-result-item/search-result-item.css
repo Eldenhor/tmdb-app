@@ -1,0 +1,39 @@
+.search-result-group {
+    display: flex;
+    margin-bottom: 32px;
+    height: 138px;
+    width: 400px;
+    margin-right: auto;
+    margin-left: auto;
+    position: relative;
+}
+
+.search-result-item {
+    margin-left: 24px;
+    overflow: hidden;
+}
+
+.search-result-image {
+    width: 92px;
+    height: 138px;
+}
+
+.no-image {
+    background-color: #171717;
+    width: 92px;
+    height: 138px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 62px;
+    color: #262626;
+}
+
+.badge-primary {
+    background-color: #f736aa;
+    font-size: 14px;
+    position: absolute;
+    top: 4px;
+    left: -8px;
+    z-index: 100;
+}

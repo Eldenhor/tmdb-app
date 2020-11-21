@@ -2,13 +2,25 @@ import "./search-results-list.css";
 
 import React from "react";
 import withSearchService from "../hoc-helpers/with-search-service";
+import SearchResultItem from "../search-result-item";
 
 const SearchResultsList = ({searchResult}) => {
-  console.log(searchResult.results)
+  console.log(searchResult.results);
 
-  return(
-    <div>test</div>
-  )
+  const resultList = searchResult.results.map((resultItem) => {
+    return (
+      <SearchResultItem key={resultItem.id}
+                        searchResultItemData={resultItem}
+      />
+    );
+  });
+
+  return (
+    <div className="search-results-list">
+      search list results here: (test search = silicon valley)
+      {resultList}
+    </div>
+  );
 };
 
 export default withSearchService(SearchResultsList);
