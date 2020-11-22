@@ -66,7 +66,6 @@ export default class App extends Component {
   };
 
   onSearchChange = (searchValue) => {
-
     this.setState({searchValue});
     console.log(searchValue);
 
@@ -75,20 +74,8 @@ export default class App extends Component {
 
   render() {
 
-    const visibleItems = this.state.searchValue === ""
-      ?
-      <React.Fragment>
-        <Route path="/"
-               exact
-               render={() => (
-                 <React.Fragment>
-                   <PageButtons pageClick={this.pageClick}/>
-                   <MovieList data={this.state.data}
-                              language={this.state.language}/>
-                 </React.Fragment>
-               )}/>
-        <Redirect to="/"/>
-      </React.Fragment>
+    const showSearchList = this.state.searchValue === ""
+      ? null
       : <Redirect to="/search"/>;
 
     return (
@@ -104,8 +91,17 @@ export default class App extends Component {
                    render={() => (
                      <SearchResultsList searchValue={this.state.searchValue}/>
                    )}/>
-            <Route path="/test" component={SearchResultsList}/>
-            {visibleItems}
+            {showSearchList}
+            <Route path="/"
+                   exact
+                   render={() => (
+                     <React.Fragment>
+                       <PageButtons pageClick={this.pageClick}/>
+                       <MovieList data={this.state.data}
+                                  language={this.state.language}/>
+                     </React.Fragment>
+                   )}/>
+            <Redirect to="/"/>
           </Switch>
         </Router>
       </div>
