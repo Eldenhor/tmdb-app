@@ -1,7 +1,7 @@
 import "./header.css";
 
 import React from "react";
-import { Link, BrowserRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import LanguageSwitch from "../language-switch";
 import SearchForm from "../search-form";
