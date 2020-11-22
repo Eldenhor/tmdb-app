@@ -5,7 +5,12 @@ import MovieList from "../movie-list";
 import PageButtons from "../page-buttons";
 import SearchResultsList from "../search-results-list/search-results-list";
 
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from "react-router-dom";
 
 export default class App extends Component {
 
@@ -61,7 +66,10 @@ export default class App extends Component {
   };
 
   onSearchChange = (searchValue) => {
+
     this.setState({searchValue});
+    console.log(searchValue);
+
   };
 
 
@@ -70,31 +78,35 @@ export default class App extends Component {
     const visibleItems = this.state.searchValue === ""
       ?
       <React.Fragment>
-        <PageButtons pageClick={this.pageClick}/>
-        <MovieList data={this.state.data} language={this.state.language}/>
+        <Route path="/"
+               exact
+               render={() => (
+                 <React.Fragment>
+                   <PageButtons pageClick={this.pageClick}/>
+                   <MovieList data={this.state.data}
+                              language={this.state.language}/>
+                 </React.Fragment>
+               )}/>
+        <Redirect to="/"/>
       </React.Fragment>
-      : <SearchResultsList searchValue={this.state.searchValue}/>;
+      : <Redirect to="/search"/>;
 
     return (
       <div>
         <Router>
           <Header setLanguage={this.setLanguage}
                   langActive={this.state.language}
-                  onSearchChange={this.onSearchChange}/>
+                  onSearchChange={this.onSearchChange}
+                  currentSearchValue={this.state.searchValue}/>
 
-          <Route path="/search"
-                 render={() => (
-                   <SearchResultsList searchValue={this.state.searchValue}/>
-                 )}/>
-          <Route path="/"
-                 exact
-                 render={() => (
-                   <React.Fragment>
-                     <PageButtons pageClick={this.pageClick}/>
-                     <MovieList data={this.state.data}
-                                language={this.state.language}/>
-                   </React.Fragment>
-                 )}/>
+          <Switch>
+            <Route path="/search"
+                   render={() => (
+                     <SearchResultsList searchValue={this.state.searchValue}/>
+                   )}/>
+            <Route path="/test" component={SearchResultsList}/>
+            {visibleItems}
+          </Switch>
         </Router>
       </div>
     );

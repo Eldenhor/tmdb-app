@@ -14,30 +14,30 @@ export default class SearchForm extends Component {
     searchValue: "",
   };
 
- // kills the timer after every entered character
+  // kills the timer after every entered character
   handleChange = (e) => {
     clearTimeout(this.timer);
     this.setState({
-      searchValue : e.target.value
-    })
+      searchValue: e.target.value
+    });
     // sets a new timer, and wait 1 sec before sending
     // the current value to the search
     this.timer = setTimeout(this.triggerChange, WAIT_INTERVAL);
-  }
+  };
 
   // executed when the ENTER is pressed
   handleKeyDown = (e) => {
     if (e.keyCode === ENTER_KEY) {
       // kills the timeout if ENTER is pressed
-      clearTimeout(this.timer)
+      clearTimeout(this.timer);
       this.triggerChange();
     }
-  }
+  };
 
   triggerChange = () => {
     const {searchValue} = this.state;
-    this.props.onSearchChange(searchValue)
-  }
+    this.props.onSearchChange(searchValue);
+  };
 
   render() {
     return (
