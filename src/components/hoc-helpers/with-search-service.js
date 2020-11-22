@@ -48,7 +48,7 @@ const withSearchService = (View) => {
 
       this.tmdbSearchService
         // get search value from props this.props.searchValue
-        .getSearchResult(this.props.searchValue)
+        .getSearchResult(this.props.searchValue, "")
         .then(this.onSearchResultsLoaded)
         .catch(this.onError);
 

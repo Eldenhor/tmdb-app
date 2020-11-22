@@ -8,8 +8,8 @@ export default class TmdbSearchService {
 
   // https://api.themoviedb.org/3/search/movie?api_key=de9b386a812a66fa48661258fd6c8359&query=silicon
 
-  getResource = async(searchValue) => {
-    const res = await fetch(`${this._apiBase}${this._apiKey}&query=${searchValue}`);
+  getResource = async(searchValue, page) => {
+    const res = await fetch(`${this._apiBase}${this._apiKey}&query=${searchValue}${page}`);
 
     if (!res.ok) {
       throw  new Error(`Could not search-fetch ${searchValue}` +
@@ -18,8 +18,8 @@ export default class TmdbSearchService {
     return await res.json();
   };
 
-  getSearchResult = async(searchValue) => {
-    return await this.getResource(searchValue);
+  getSearchResult = async(searchValue, page) => {
+    return await this.getResource(searchValue, page);
   };
 
 }

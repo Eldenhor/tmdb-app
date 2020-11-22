@@ -5,6 +5,7 @@ export default class TmdbService {
 
   _imageBase = "https://image.tmdb.org/t/p/w200";
 
+
   getResource = async(url, language) => {
     const res = await fetch(`${this._apiBase}${url}${this._apiKey}&language=${language}`);
 
