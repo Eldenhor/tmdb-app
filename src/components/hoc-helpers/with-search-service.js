@@ -17,14 +17,21 @@ const withSearchService = (View) => {
     };
 
     componentDidMount() {
+      this.mounted = true;
       this.updateSearchResults();
     }
 
+    componentWillUnmount() {
+      this.mounted = false;
+    }
+
     onSearchResultsLoaded = (searchResult) => {
-      this.setState({
-        loading: false,
-        searchResult
-      });
+      if (this.mounted) {
+        this.setState({
+          loading: false,
+          searchResult
+        });
+      }
     };
 
     onError = () => {
@@ -36,7 +43,7 @@ const withSearchService = (View) => {
 
     componentDidUpdate(prevProps) {
       if (this.props.searchValue !== prevProps.searchValue) {
-        this.updateSearchResults()
+        this.updateSearchResults();
       }
     }
 
@@ -52,12 +59,12 @@ const withSearchService = (View) => {
         .then(this.onSearchResultsLoaded)
         .catch(this.onError);
 
-      console.log(this.props)
+
+      console.log(this.props);
     };
 
 
     render() {
-
 
       const {searchResult, error, loading} = this.state;
 
