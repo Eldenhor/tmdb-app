@@ -5,6 +5,8 @@ import MovieList from "../movie-list";
 import PageButtons from "../page-buttons";
 import SearchResultsList from "../search-results-list/search-results-list";
 
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
 export default class App extends Component {
 
   state = {
@@ -75,11 +77,25 @@ export default class App extends Component {
 
     return (
       <div>
-        <Header setLanguage={this.setLanguage}
-                langActive={this.state.language}
-                onSearchChange={this.onSearchChange}/>
+        <Router>
+          <Header setLanguage={this.setLanguage}
+                  langActive={this.state.language}
+                  onSearchChange={this.onSearchChange}/>
 
-        {visibleItems}
+          <Route path="/search"
+                 render={() => (
+                   <SearchResultsList searchValue={this.state.searchValue}/>
+                 )}/>
+          <Route path="/"
+                 exact
+                 render={() => (
+                   <React.Fragment>
+                     <PageButtons pageClick={this.pageClick}/>
+                     <MovieList data={this.state.data}
+                                language={this.state.language}/>
+                   </React.Fragment>
+                 )}/>
+        </Router>
       </div>
     );
   }
