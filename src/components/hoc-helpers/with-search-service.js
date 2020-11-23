@@ -48,6 +48,7 @@ const withSearchService = (View) => {
     }
 
     updateSearchResults = () => {
+
       this.setState({
         loading: true,
         error: false
@@ -60,7 +61,6 @@ const withSearchService = (View) => {
         .catch(this.onError);
 
 
-      console.log(this.props);
     };
 
 
