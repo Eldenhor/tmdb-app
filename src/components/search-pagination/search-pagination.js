@@ -1,8 +1,8 @@
-import "./search-pages.css";
+import "./search-pagination.css";
 
 import React, { useState, useEffect } from "react";
 
-const SearchPages = ({pageCount, setPageNumber, currentPage}) => {
+const SearchPagination = ({pageCount, setPageNumber, currentPage}) => {
 
 
   // set number of pages array from 1 to N
@@ -102,4 +102,4 @@ const SearchPages = ({pageCount, setPageNumber, currentPage}) => {
   );
 };
 
-export default SearchPages;
+export default SearchPagination;
