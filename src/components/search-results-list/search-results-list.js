@@ -3,7 +3,7 @@ import "./search-results-list.css";
 import React from "react";
 import withSearchService from "../hoc-helpers/with-search-service";
 import SearchResultItem from "../search-result-item";
-import SearchPages from "../search-pages";
+import SearchPagination from "../search-pagination";
 
 const SearchResultsList = ({searchResult, setPageNumber, currentPage}) => {
 
@@ -19,7 +19,7 @@ const SearchResultsList = ({searchResult, setPageNumber, currentPage}) => {
 
   return (
     <div className="search-results-list">
-      <SearchPages pageCount={searchResult.total_pages} setPageNumber={setPageNumber} currentPage={currentPage}/>
+      <SearchPagination pageCount={searchResult.total_pages} setPageNumber={setPageNumber} currentPage={currentPage}/>
       {resultList}
     </div>
   );
