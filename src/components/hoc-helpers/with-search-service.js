@@ -42,12 +42,14 @@ const withSearchService = (View) => {
     };
 
     componentDidUpdate(prevProps) {
-      if (this.props.searchValue !== prevProps.searchValue) {
+      if (this.props.searchValue !== prevProps.searchValue || this.props.pageNumber !== prevProps.pageNumber) {
         this.updateSearchResults();
       }
     }
 
+
     updateSearchResults = () => {
+      console.log(this.props.pageNumber)
 
       this.setState({
         loading: true,
@@ -56,10 +58,9 @@ const withSearchService = (View) => {
 
       this.tmdbSearchService
         // get search value from props this.props.searchValue
-        .getSearchResult(this.props.searchValue, "")
+        .getSearchResult(`${this.props.searchValue}&page=${this.props.pageNumber}`)
         .then(this.onSearchResultsLoaded)
         .catch(this.onError);
-
 
     };
 
@@ -77,7 +78,7 @@ const withSearchService = (View) => {
       }
 
       return (
-        <View searchResult={searchResult}/>
+        <View searchResult={searchResult} setPageNumber={this.props.setPageNumber} currentPage={this.props.pageNumber}/>
       );
     }
   };

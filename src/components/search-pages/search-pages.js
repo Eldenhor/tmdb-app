@@ -2,7 +2,7 @@ import "./search-pages.css";
 
 import React, { useState, useEffect } from "react";
 
-const SearchPages = ({pageCount}) => {
+const SearchPages = ({pageCount, setPageNumber, currentPage}) => {
 
 
   // set number of pages array from 1 to N
@@ -12,7 +12,7 @@ const SearchPages = ({pageCount}) => {
   }
 
   // current active button number
-  const [currentButton, setCurrentButton] = useState(1);
+  const [currentButton, setCurrentButton] = useState(currentPage);
 
   // array of buttons that we see on the page
   const [arrOfCurrButtons, setArrOfCurrButtons] = useState([]);
@@ -75,7 +75,11 @@ const SearchPages = ({pageCount}) => {
       setArrOfCurrButtons(tempNumberOfPages);
     }
 
+      setPageNumber(currentButton)
+
   }, [currentButton]);
+
+
 
 
   const pageList = arrOfCurrButtons.map((page, index) => {

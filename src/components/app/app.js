@@ -22,7 +22,8 @@ export default class App extends Component {
       {id: 553},
     ],
     language: "en",
-    searchValue: ""
+    searchValue: "",
+    pageNumber: 1
   };
 
   // test pages
@@ -65,10 +66,15 @@ export default class App extends Component {
     });
   };
 
+
+  setPageNumber = (pageNumber) => {
+    this.setState({
+      pageNumber
+    })
+  }
+
   onSearchChange = (searchValue) => {
     this.setState({searchValue});
-    console.log(searchValue);
-
   };
 
 
@@ -89,7 +95,9 @@ export default class App extends Component {
           <Switch>
             <Route path="/search"
                    render={() => (
-                     <SearchResultsList searchValue={this.state.searchValue}/>
+                     <SearchResultsList searchValue={this.state.searchValue}
+                                        pageNumber={this.state.pageNumber}
+                                        setPageNumber={this.setPageNumber}/>
                    )}/>
             {showSearchList}
             <Route path="/"
