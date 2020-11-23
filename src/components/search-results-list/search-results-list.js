@@ -5,8 +5,8 @@ import withSearchService from "../hoc-helpers/with-search-service";
 import SearchResultItem from "../search-result-item";
 import SearchPages from "../search-pages";
 
-const SearchResultsList = ({searchResult}) => {
-  console.log(searchResult.results);
+const SearchResultsList = ({searchResult, setPageNumber, currentPage}) => {
+
   console.log(searchResult)
 
   const resultList = searchResult.results.map((resultItem) => {
@@ -19,7 +19,7 @@ const SearchResultsList = ({searchResult}) => {
 
   return (
     <div className="search-results-list">
-      <SearchPages pageCount={searchResult.total_pages}/>
+      <SearchPages pageCount={searchResult.total_pages} setPageNumber={setPageNumber} currentPage={currentPage}/>
       {resultList}
     </div>
   );
