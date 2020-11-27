@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import TmdbSearchService from "../../services/tmdb-search-service";
+import tmdbSearchService from "../../services/tmdb-search-service";
 import Spinner from "../spinner";
 import ErrorIndicator from "../error-indicator";
 
@@ -8,7 +8,7 @@ const withSearchService = (View) => {
 
   return class extends Component {
 
-    tmdbSearchService = new TmdbSearchService();
+    tmdbSearchService = new tmdbSearchService();
 
     state = {
       searchResult: {},

@@ -2,9 +2,9 @@ import "./movie-card.css";
 
 import React from "react";
 
-const MovieCard = ({data}) => {
+const MovieCard = ({movie}) => {
 
-  const {poster_path, vote_average} = data;
+  const {poster_path, vote_average} = movie;
 
   return (
     <div className="movie-card">
