@@ -2,9 +2,9 @@ import "./movie-details.css";
 
 import React from "react";
 
-const MovieDetails = ({data}) => {
+const MovieDetails = ({movie}) => {
 
-  const {overview, original_title, tagline} = data;
+  const {overview, original_title, tagline} = movie;
 
   return (
     <div className="card-body">
