@@ -1,4 +1,4 @@
-export default class TmdbSearchService {
+export default class tmdbSearchService {
 
   _apiBase = "https://api.themoviedb.org/3/search/movie/";
   _apiKey = "?api_key=de9b386a812a66fa48661258fd6c8359";

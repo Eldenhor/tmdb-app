@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import TmdbService from "../../services/tmdb-service";
+import tmdbService from "../../services/tmdb-service";
 import Spinner from "../spinner";
 import ErrorIndicator from "../error-indicator";
 
@@ -8,7 +8,7 @@ const withData = (View) => {
 
   return class extends Component {
 
-    tmdb = new TmdbService();
+    tmdb = new tmdbService();
 
     state = {
       loading: true,
