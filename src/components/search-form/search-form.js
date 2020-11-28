@@ -1,7 +1,12 @@
 import "./search-form.css";
 
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+
+import {
+  clearMovieList,
+  getSearchList
+} from "../../actions/getMovieListAction";
 
 const WAIT_INTERVAL = 1000;
 const ENTER_KEY = 13;
@@ -20,7 +25,7 @@ class SearchForm extends Component {
 
     // if search field is empty, reset search, and redirect to main page
     if (e.target.value === "") {
-      this.props.onSearchChange("")
+      this.props.onSearchChange("");
       this.props.history.push("/");
     }
     this.setState({
@@ -43,7 +48,8 @@ class SearchForm extends Component {
 
   triggerChange = () => {
     const {searchValue} = this.state;
-    this.props.onSearchChange(searchValue);
+    // redux only here???
+    this.props.getSearchList(searchValue);
   };
 
   render() {
@@ -63,4 +69,12 @@ class SearchForm extends Component {
   }
 };
 
-export default withRouter(SearchForm);
+const mapStateToProps = (state) => ({
+  movieList: state.movieList
+});
+
+const mapDispatchToProps = dispatch => ({
+  getSearchList: (query, page) => dispatch(getSearchList(query, page))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchForm);
