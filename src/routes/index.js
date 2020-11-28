@@ -2,7 +2,6 @@ import React from "react";
 import { Route } from "react-router";
 
 import App from "../components/app";
-import MovieList from "../components/movie-list";
 
 const routes = (
   <Route path="/" component={App}/>

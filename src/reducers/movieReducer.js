@@ -1,5 +1,5 @@
 const initialState = {
-  isLoaded: false,
+  loading: true,
 };
 
 const movie = (movie = initialState, action) => {
@@ -8,7 +8,7 @@ const movie = (movie = initialState, action) => {
       return {
         ...movie,
         ...action.payload.data,
-        isLoaded: true
+        loading: false
       };
     case "GET_MOVIE_FAIL":
       return {

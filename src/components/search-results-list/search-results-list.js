@@ -7,7 +7,6 @@ import SearchPagination from "../search-pagination";
 
 const SearchResultsList = ({searchResult, setPageNumber, currentPage}) => {
 
-  console.log(searchResult)
 
   const resultList = searchResult.results.map((resultItem) => {
     return (
