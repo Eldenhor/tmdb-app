@@ -8,7 +8,7 @@ const MovieCard = ({movie}) => {
 
   return (
     <div className="movie-card">
-      <div className="card">
+      <div className="card border-0">
         <img src={`https://image.tmdb.org/t/p/w185${poster_path}`}
              alt="movie"/>
       </div>
