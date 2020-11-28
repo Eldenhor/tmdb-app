@@ -7,21 +7,11 @@ import SearchPagination from "../search-pagination";
 
 const SearchResultsList = ({searchResult, setPageNumber, currentPage}) => {
 
-
-  const resultList = searchResult.results.map((resultItem) => {
-    return (
-      <SearchResultItem key={resultItem.id}
-                        searchResultItemData={resultItem}
-      />
-    );
-  });
-
   return (
     <div className="search-results-list">
-      <SearchPagination pageCount={searchResult.total_pages} setPageNumber={setPageNumber} currentPage={currentPage}/>
-      {resultList}
+      <div>search list</div>
     </div>
   );
 };
 
-export default withSearchService(SearchResultsList);
+export default SearchResultsList;

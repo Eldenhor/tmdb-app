@@ -28,3 +28,23 @@ export const clearMovieList = () => (dispatch) => {
     type: "CLEAR_MOVIE_LIST"
   });
 };
+
+export const getSearchList = (query, page = 1) => (dispatch) => {
+  axios.get(`https://api.themoviedb.org/3/search/movie${_apiRest}&query=${query}&page=${page}`)
+    .then(data => {
+      dispatch({
+        type: "GET_MOVIE_LIST_SUCCESS",
+        payload: data
+      });
+    })
+    .catch(error => {
+      dispatch({
+        type: "GET_MOVIE_LIST_FAIL",
+        payload: {
+          error: `${error.message}`,
+          status: error.response && error.response.data.status_message
+        }
+      });
+    });
+};
+
