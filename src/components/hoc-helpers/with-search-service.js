@@ -49,7 +49,6 @@ const withSearchService = (View) => {
 
 
     updateSearchResults = () => {
-      console.log(this.props.pageNumber)
 
       this.setState({
         loading: true,

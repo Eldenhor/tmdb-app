@@ -1,6 +1,5 @@
 import React from "react";
 import { TmdbServiceConsumer } from "../tmdb-service-context";
-import tmdbService from "../../services/tmdb-service";
 
 const withTmdbService = () => (Wrapped) => {
 
