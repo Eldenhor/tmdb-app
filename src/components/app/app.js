@@ -2,12 +2,12 @@ import "./app.css";
 
 import React from "react";
 
-import MovieList from "../movie-list";
+import TopList from "../top-list/top-list";
 
 const App = () => {
   return (
     <React.Fragment>
-      <MovieList/>
+      <TopList/>
     </React.Fragment>
   );
 };
