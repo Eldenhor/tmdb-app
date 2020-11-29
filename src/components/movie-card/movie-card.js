@@ -6,11 +6,14 @@ const MovieCard = ({movie}) => {
 
   const {poster_path, vote_average} = movie;
 
+  const poster = poster_path ?
+    <img src={`https://image.tmdb.org/t/p/w185${poster_path}`} alt="movie"/>
+    : <div className="no-image"> test </div>;
+
   return (
     <div className="movie-card">
       <div className="card border-0">
-        <img src={`https://image.tmdb.org/t/p/w185${poster_path}`}
-             alt="movie"/>
+        {poster}
       </div>
 
       <h4>

@@ -1,5 +1,12 @@
- .movie-card-container {
+ .movie-card-list-container {
      margin-left: auto;
      margin-right: auto;
-     margin-top: 20px;
+     display: flex;
+     justify-content: center;
+     flex-direction: column;
+ }
+
+ .movie-card-container:hover {
+     outline: 1px solid #dcdcdc;
+     background: #f5f5f5;
  }

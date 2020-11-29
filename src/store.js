@@ -41,7 +41,7 @@ export default function configureStore(preloadedState) {
       applyMiddleware(
         routerMiddleware(history),
         thunk,
-        createLogger()
+        createLogger({collapsed:true})
       )
     )
   );

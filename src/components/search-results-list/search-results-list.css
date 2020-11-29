@@ -1,6 +1,4 @@
 .search-results-list {
-    margin-top: 40px;
-    width: 420px;
-    margin-left: auto;
-    margin-right: auto;
+    display: flex;
+    justify-content: center;
 }
