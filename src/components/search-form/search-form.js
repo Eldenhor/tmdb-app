@@ -2,6 +2,7 @@ import "./search-form.css";
 
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { push } from "connected-react-router";
 
 import {
   clearMovieList,
@@ -25,8 +26,8 @@ class SearchForm extends Component {
 
     // if search field is empty, reset search, and redirect to main page
     if (e.target.value === "") {
-      this.props.onSearchChange("");
-      this.props.history.push("/");
+      this.props.clearMovieList();
+      this.props.push("/");
     }
     this.setState({
       searchValue: e.target.value
@@ -34,23 +35,35 @@ class SearchForm extends Component {
 
     // sets a new timer, and wait 1 sec before sending
     // the current value to the search
-    this.timer = setTimeout(this.triggerChange, WAIT_INTERVAL);
+    if (e.target.value !== "") {
+      this.timer = setTimeout(this.triggerChange, WAIT_INTERVAL);
+    }
   };
 
   // executed when the ENTER is pressed
   handleKeyDown = (e) => {
     if (e.keyCode === ENTER_KEY) {
       // kills the timeout if ENTER is pressed
-      clearTimeout(this.timer);
-      this.triggerChange();
+      if (e.target.value !== "") {
+        clearTimeout(this.timer);
+        this.triggerChange();
+      }
     }
   };
 
   triggerChange = () => {
+    this.props.clearMovieList();
     const {searchValue} = this.state;
     // redux only here???
     this.props.getSearchList(searchValue);
+    if (searchValue !== "") {
+      this.props.push("/search");
+    }
   };
+
+  componentWillUnmount() {
+    // this.props.clearMovieList();
+  }
 
   render() {
 
@@ -69,12 +82,15 @@ class SearchForm extends Component {
   }
 };
 
+
 const mapStateToProps = (state) => ({
-  movieList: state.movieList
+  movieListData: state.movieListData,
 });
 
 const mapDispatchToProps = dispatch => ({
-  getSearchList: (query, page) => dispatch(getSearchList(query, page))
+  getSearchList: (query, page) => dispatch(getSearchList(query, page)),
+  push: (query) => dispatch(push(query)),
+  clearMovieList: () => dispatch(clearMovieList())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchForm);

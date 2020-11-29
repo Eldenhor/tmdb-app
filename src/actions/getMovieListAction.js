@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const _apiBase = "https://api.themoviedb.org/3/movie/";
+// const _apiBase = "https://api.themoviedb.org/3/movie/";
 const _apiRest = "?api_key=de9b386a812a66fa48661258fd6c8359&language=en-US";
 
 export const getTopList = (page = 1) => (dispatch) => {
@@ -24,6 +24,7 @@ export const getTopList = (page = 1) => (dispatch) => {
 };
 
 export const clearMovieList = () => (dispatch) => {
+  console.log("cleared");
   dispatch({
     type: "CLEAR_MOVIE_LIST"
   });

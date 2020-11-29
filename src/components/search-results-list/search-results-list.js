@@ -1,17 +1,33 @@
 import "./search-results-list.css";
 
 import React from "react";
-import withSearchService from "../hoc-helpers/with-search-service";
-import SearchResultItem from "../search-result-item";
-import SearchPagination from "../search-pagination";
+import { connect } from "react-redux";
+import {
+  getSearchList,
+} from "../../actions/getMovieListAction";
+import MovieCardContainer from "../movie-cards-container";
 
-const SearchResultsList = ({searchResult, setPageNumber, currentPage}) => {
+const SearchResultsList = ({pathname, movieList}) => {
+
 
   return (
     <div className="search-results-list">
       <div>search list</div>
+      <div>
+        pathname: {pathname}
+      </div>
+      <MovieCardContainer movieList={movieList}/>
     </div>
   );
 };
 
-export default SearchResultsList;
+const mapStateToProps = (state) => ({
+  movieList: state.movieList
+});
+
+const mapDispatchToProps = dispatch => ({
+  getSearchList: () => dispatch(getSearchList())
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchResultsList);
