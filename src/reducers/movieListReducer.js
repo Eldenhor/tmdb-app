@@ -1,5 +1,6 @@
 const initialState = {
-  page: "",
+  page: '',
+  total_pages: '',
   movieListData: [],
 };
 
@@ -7,6 +8,8 @@ const movieList = (movieList = initialState, action) => {
   switch (action.type) {
     case "GET_MOVIE_LIST_SUCCESS":
       return {
+        page: action.payload.data.page,
+        total_pages: action.payload.data.total_pages,
         movieListData: [
           ...movieList.movieListData,
           ...action.payload.data.results,

@@ -9,6 +9,7 @@ import { getTopList, clearMovieList } from "../../actions/getMovieListAction";
 class TopList extends Component {
 
   componentDidMount() {
+    this.props.clearMovieList();
     this.props.getTopList();
   }
 
