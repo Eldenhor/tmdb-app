@@ -6,7 +6,7 @@ import MovieCard from "../movie-card";
 import CardsGrid from "../cards-grid";
 import MovieDetails from "../movie-details";
 
-import Spinner from "../spinner";
+// import Spinner from "../spinner";
 import ErrorIndicator from "../error-indicator";
 
 const MovieCardContainer = ({movieList}) => {
