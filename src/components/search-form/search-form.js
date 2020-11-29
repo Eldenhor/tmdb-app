@@ -26,7 +26,6 @@ class SearchForm extends Component {
 
     // if search field is empty, reset search, and redirect to main page
     if (e.target.value === "") {
-      this.props.clearMovieList();
       this.props.push("/");
     }
     this.setState({

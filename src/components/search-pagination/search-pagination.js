@@ -1,35 +1,45 @@
 import "./search-pagination.css";
 
 import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 
-const SearchPagination = ({pageCount, setPageNumber, currentPage}) => {
+const SearchPagination = ({movieList}) => {
 
+  // set page number in store
+  const setPageNumber = (page) => {
+    console.log(page);
+  };
 
   // set number of pages array from 1 to N
   const numberOfPages = [];
-  for (let i = 1; i <= pageCount; i++) {
+
+  // const movieList = useSelector(state => state.movieList)
+
+  for (let i = 1; i <= movieList.total_pages; i++) {
     numberOfPages.push(i);
   }
 
+  console.log(movieList.total_pages);
+
   // current active button number
-  const [currentButton, setCurrentButton] = useState(currentPage);
+  const [currentButton, setCurrentButton] = useState(1);
 
   // array of buttons that we see on the page
   const [arrOfCurrButtons, setArrOfCurrButtons] = useState([]);
 
-
-
   useEffect(() => {
+
 
     let tempNumberOfPages = [...arrOfCurrButtons];
 
-    if (pageCount <= 10) {
+    if (movieList.total_pages <= 10) {
+
       setArrOfCurrButtons(numberOfPages);
     } else {
 
-      let dotsInitial = '...'
-      let dotsLeft = '<'
-      let dotsRight = '>'
+      let dotsInitial = "...";
+      let dotsLeft = "<";
+      let dotsRight = ">";
 
       if (currentButton >= 1 && currentButton <= 3) {
         tempNumberOfPages = [1, 2, 3, 4, 5, dotsInitial, numberOfPages.length];
@@ -51,35 +61,28 @@ const SearchPagination = ({pageCount, setPageNumber, currentPage}) => {
         // > 7
       // slice (10 - 4)
       else if (currentButton > numberOfPages.length - 3) {
-        const sliced = numberOfPages.slice(numberOfPages.length - 4)
-        tempNumberOfPages = ([1, dotsLeft, ...sliced])
-      }
-
-      else if (currentButton === dotsInitial) {
+        const sliced = numberOfPages.slice(numberOfPages.length - 4);
+        tempNumberOfPages = ([1, dotsLeft, ...sliced]);
+      } else if (currentButton === dotsInitial) {
         // [1, 2, 3, 4, "...", 10].length = 6 - 3 = 3
         // arrOfCurrButtons[3] = 4 + 1 = 5
         // or
         // [1, 2, 3, 4, 5, "...", 10].length = 7 - 3 = 4
         // [1, 2, 3, 4, 5, "...", 10][4] = 5 + 1 = 6
-        setCurrentButton(arrOfCurrButtons[arrOfCurrButtons.length-3] + 1)
-      }
-
-      else if (currentButton === dotsRight) {
-        setCurrentButton(arrOfCurrButtons[3] + 2)
-      }
-
-      else if (currentButton === dotsLeft) {
-        setCurrentButton(arrOfCurrButtons[3] - 2)
+        setCurrentButton(arrOfCurrButtons[arrOfCurrButtons.length - 3] + 1);
+      } else if (currentButton === dotsRight) {
+        setCurrentButton(arrOfCurrButtons[3] + 2);
+      } else if (currentButton === dotsLeft) {
+        setCurrentButton(arrOfCurrButtons[3] - 2);
       }
 
       setArrOfCurrButtons(tempNumberOfPages);
     }
 
-      setPageNumber(currentButton)
+    setPageNumber(currentButton);
+
 
   }, [currentButton]);
-
-
 
 
   const pageList = arrOfCurrButtons.map((page, index) => {
@@ -101,5 +104,17 @@ const SearchPagination = ({pageCount, setPageNumber, currentPage}) => {
     </div>
   );
 };
+
+
+// const mapStateToProps = (state) => ({
+//   movieList: state.movieList
+// });
+//
+// const mapDispatchToProps = (dispatch) => ({
+//   getSearchList: () => dispatch(getSearchList())
+// });
+//
+//
+// export default connect(mapStateToProps, mapDispatchToProps)(SearchPagination);
 
 export default SearchPagination;
