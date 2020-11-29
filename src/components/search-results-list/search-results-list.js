@@ -7,17 +7,16 @@ import {
 } from "../../actions/getMovieListAction";
 import MovieCardContainer from "../movie-cards-container";
 
-const SearchResultsList = ({pathname, movieList}) => {
+const SearchResultsList = ({movieList}) => {
 
 
   return (
-    <div className="search-results-list">
-      <div>search list</div>
-      <div>
-        pathname: {pathname}
+    <React.Fragment>
+      <h4 className="d-flex justify-content-center mt-4">Search Results</h4>
+      <div className="search-results-list">
+        <MovieCardContainer movieList={movieList}/>
       </div>
-      <MovieCardContainer movieList={movieList}/>
-    </div>
+    </React.Fragment>
   );
 };
 

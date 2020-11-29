@@ -9,7 +9,6 @@
     width: 100%;
     height: 207px;
     overflow: hidden;
-    border-radius: 10px;
 }
 
 .badge-success {
@@ -18,7 +17,11 @@
     bottom: 174px;
     left: -4px;
     z-index: 100;
-    border-radius: 4px;
     font-size: 18px;
     padding: 2px
+}
+
+.no-image {
+    background-color: dimgray;
+    height: 207px;
 }

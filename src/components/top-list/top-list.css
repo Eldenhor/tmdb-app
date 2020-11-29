@@ -1,9 +1,3 @@
-.movie-list > * {
-    width: 640px;
-    height: 260px;
-    margin-top: 20px;
-}
-
 .movie-list {
     display: flex;
     justify-content: center;

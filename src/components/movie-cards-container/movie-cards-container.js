@@ -18,8 +18,8 @@ const MovieCardContainer = ({movieList}) => {
   const itemsList = movieList.movieListData.map((movie) => {
     return (
       <div
-        key={movie.id}
-        className="movie-card-container">
+        className="movie-card-container"
+        key={movie.id}>
         <CardsGrid poster={<MovieCard movie={movie}/>}
                    details={<MovieDetails movie={movie}/>}/>
       </div>
@@ -27,7 +27,7 @@ const MovieCardContainer = ({movieList}) => {
   });
 
   return (
-    <div className="movie-card-container">
+    <div className="movie-card-list-container">
       {itemsList}
     </div>
   );
