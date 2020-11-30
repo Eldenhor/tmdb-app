@@ -11,7 +11,7 @@ class SearchResultsList extends Component {
 
   render() {
 
-    const pagination = (this.props.movieList.total_pages === "" || this.props.movieList.total_pages === 1)
+    const pagination = (this.props.movieList.total_pages === "" || this.props.movieList.total_pages === 1 || this.props.movieList.loaded === false)
       ? null
       : <SearchPagination movieList={this.props.movieList}/>;
 
@@ -19,6 +19,11 @@ class SearchResultsList extends Component {
     const searchResults = (this.props.movieList.loaded === true)
       ? <MovieCardContainer movieList={this.props.movieList}/>
       : <Spinner/>;
+
+    if (this.props.movieList.total_pages === 0) {
+      return <h3 className="text-center">nothing found</h3>;
+    }
+
 
     return (
       <React.Fragment>

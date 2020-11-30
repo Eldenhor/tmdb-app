@@ -6,7 +6,6 @@ const initialState = {
 const movieList = (movieList = initialState, action) => {
   switch (action.type) {
     case "GET_MOVIE_LIST_SUCCESS":
-      console.log(action.payload);
       return {
         query: action.payload.config.url,
         page: action.payload.data.page,

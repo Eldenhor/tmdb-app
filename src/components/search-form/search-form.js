@@ -56,9 +56,15 @@ class SearchForm extends Component {
     this.props.clearTotalPage();
     const {searchValue} = this.state;
     // redux only here???
-    this.props.getSearchList(searchValue);
-    if (searchValue !== "") {
-      this.props.push(`/search/${searchValue}`);
+    const regPattern = /[a-zA-Z0-9а-яА-Я -]+/;
+    const regSearchValue = searchValue.toString().match(regPattern);
+
+    if (regSearchValue !== null) {
+
+      this.props.getSearchList(regSearchValue);
+      if (regSearchValue !== "") {
+        this.props.push(`/search/${regSearchValue}`);
+      }
     }
   };
 
