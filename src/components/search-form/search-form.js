@@ -6,7 +6,8 @@ import { push } from "connected-react-router";
 
 import {
   clearMovieList,
-  getSearchList
+  getSearchList,
+  clearTotalPage
 } from "../../actions/getMovieListAction";
 
 const WAIT_INTERVAL = 1000;
@@ -52,11 +53,12 @@ class SearchForm extends Component {
 
   triggerChange = () => {
     this.props.clearMovieList();
+    this.props.clearTotalPage();
     const {searchValue} = this.state;
     // redux only here???
     this.props.getSearchList(searchValue);
     if (searchValue !== "") {
-      this.props.push("/search");
+      this.props.push(`/search/${searchValue}`);
     }
   };
 
@@ -88,6 +90,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = dispatch => ({
   getSearchList: (query, page) => dispatch(getSearchList(query, page)),
+  clearTotalPage: () => dispatch(clearTotalPage()),
   push: (query) => dispatch(push(query)),
   clearMovieList: () => dispatch(clearMovieList())
 });

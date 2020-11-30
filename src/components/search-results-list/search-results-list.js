@@ -1,39 +1,43 @@
 import "./search-results-list.css";
 
-import React from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
-import {
-  getSearchList,
-} from "../../actions/getMovieListAction";
 import MovieCardContainer from "../movie-cards-container";
 import SearchPagination from "../search-pagination";
+import Spinner from "../spinner";
 
-const SearchResultsList = ({movieList}) => {
+class SearchResultsList extends Component {
 
-  const pagination = (movieList.total_pages === "" || movieList.total_pages === 1)
-    ? null
-    : <SearchPagination movieList={movieList}/>;
 
-  return (
-    <React.Fragment>
-      <h4 className="d-flex justify-content-center mt-4">Search Results</h4>
-      <div className="search-pagination">
-        {pagination}
-      </div>
-      <div className="search-results-list">
-        <MovieCardContainer movieList={movieList}/>
-      </div>
-    </React.Fragment>
-  );
-};
+  render() {
+
+    const pagination = (this.props.movieList.total_pages === "" || this.props.movieList.total_pages === 1)
+      ? null
+      : <SearchPagination movieList={this.props.movieList}/>;
+
+
+    const searchResults = (this.props.movieList.loaded === true)
+      ? <MovieCardContainer movieList={this.props.movieList}/>
+      : <Spinner/>;
+
+    return (
+      <React.Fragment>
+        <h4 className="d-flex justify-content-center mt-4">Search Results</h4>
+        <div className="search-pagination">
+          {pagination}
+        </div>
+        <div className="search-results-list">
+          {searchResults}
+        </div>
+      </React.Fragment>
+    );
+  };
+}
+
 
 const mapStateToProps = (state) => ({
   movieList: state.movieList
 });
 
-const mapDispatchToProps = dispatch => ({
-  getSearchList: () => dispatch(getSearchList())
-});
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(SearchResultsList);
+export default connect(mapStateToProps)(SearchResultsList);

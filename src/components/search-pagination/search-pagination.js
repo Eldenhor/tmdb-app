@@ -1,25 +1,29 @@
 import "./search-pagination.css";
 
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { connect } from "react-redux";
 
-const SearchPagination = ({movieList}) => {
+import {
+  clearMovieList,
+  getSearchList,
+} from "../../actions/getMovieListAction";
 
-  // set page number in store
+
+const SearchPagination = ({movieList, getSearchList, clearMovieList}) => {
+
   const setPageNumber = (page) => {
-    console.log(page);
+    if (movieList.query !== undefined) {
+      const url = movieList.query.toString();
+      const query = url.slice([104], url.lastIndexOf("&"));
+
+      if (typeof page === "number") {
+        if (movieList.page !== page) {
+          clearMovieList();
+          getSearchList(query, page);
+        }
+      }
+    }
   };
-
-  // set number of pages array from 1 to N
-  const numberOfPages = [];
-
-  // const movieList = useSelector(state => state.movieList)
-
-  for (let i = 1; i <= movieList.total_pages; i++) {
-    numberOfPages.push(i);
-  }
-
-  console.log(movieList.total_pages);
 
   // current active button number
   const [currentButton, setCurrentButton] = useState(1);
@@ -27,8 +31,15 @@ const SearchPagination = ({movieList}) => {
   // array of buttons that we see on the page
   const [arrOfCurrButtons, setArrOfCurrButtons] = useState([]);
 
+  /*eslint-disable */
   useEffect(() => {
 
+    // set number of pages array from 1 to N
+    const numberOfPages = [];
+
+    for (let i = 1; i <= movieList.total_pages; i++) {
+      numberOfPages.push(i);
+    }
 
     let tempNumberOfPages = [...arrOfCurrButtons];
 
@@ -82,19 +93,20 @@ const SearchPagination = ({movieList}) => {
     setPageNumber(currentButton);
 
 
-  }, [currentButton]);
-
+  }, [currentButton, movieList.loaded]);
+  /*eslint-enable */
 
   const pageList = arrOfCurrButtons.map((page, index) => {
     return (
       <button
         key={index}
-        className={`btn btn-secondary search-button ${currentButton === page ? "active" : ""}`}
+        className={`btn btn-secondary search-button ${currentButton === page ? "active" : "disabled"}`}
         onClick={() => setCurrentButton(page)}>
         {page}
       </button>
     );
   });
+
 
   return (
     <div>
@@ -105,16 +117,13 @@ const SearchPagination = ({movieList}) => {
   );
 };
 
+const mapStateToProps = (state) => ({
+  movieList: state.movieList
+});
 
-// const mapStateToProps = (state) => ({
-//   movieList: state.movieList
-// });
-//
-// const mapDispatchToProps = (dispatch) => ({
-//   getSearchList: () => dispatch(getSearchList())
-// });
-//
-//
-// export default connect(mapStateToProps, mapDispatchToProps)(SearchPagination);
+const mapDispatchToProps = (dispatch) => ({
+  clearMovieList: () => dispatch(clearMovieList()),
+  getSearchList: (query, page) => dispatch(getSearchList(query, page))
+});
 
-export default SearchPagination;
+export default connect(mapStateToProps, mapDispatchToProps)(SearchPagination);
