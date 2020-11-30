@@ -47,3 +47,11 @@ export const clearMovieList = () => (dispatch) => {
     type: "CLEAR_MOVIE_LIST"
   });
 };
+
+export const clearTotalPage = () => (dispatch) => {
+  dispatch({
+    type: "CLEAR_TOTAL_PAGE"
+  })
+}
+
+
