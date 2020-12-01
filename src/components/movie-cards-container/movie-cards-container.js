@@ -1,20 +1,27 @@
 import "./movie-cards-container.css";
 
 import React from "react";
+import { push } from "connected-react-router";
+import { connect } from "react-redux";
 
 import MovieCard from "../movie-card";
 import CardsGrid from "../cards-grid";
-import MovieDetails from "../movie-details";
+import MovieOverview from "../movie-overview";
 
-const MovieCardContainer = ({movieList}) => {
+const MovieCardContainer = ({movieList, push}) => {
+  const showId = (id) => {
+    console.log(id);
+    push(`/movie/${id}`);
+  };
 
   const itemsList = movieList.movieListData.map((movie) => {
     return (
       <div
         className="movie-card-container"
-        key={movie.id}>
+        key={movie.id}
+        onClick={() => showId(movie.id)}>
         <CardsGrid poster={<MovieCard movie={movie}/>}
-                   details={<MovieDetails movie={movie}/>}/>
+                   details={<MovieOverview movie={movie}/>}/>
       </div>
     );
   });
@@ -26,4 +33,8 @@ const MovieCardContainer = ({movieList}) => {
   );
 };
 
-export default MovieCardContainer;
+const mapDispatchToProps = dispatch => ({
+  push: (id) => dispatch(push(id))
+});
+
+export default connect(null, mapDispatchToProps)(MovieCardContainer);

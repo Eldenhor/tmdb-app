@@ -60,7 +60,6 @@ class SearchForm extends Component {
     const regSearchValue = searchValue.toString().match(regPattern);
 
     if (regSearchValue !== null) {
-
       this.props.getSearchList(regSearchValue);
       if (regSearchValue !== "") {
         this.props.push(`/search/${regSearchValue}`);
@@ -87,7 +86,7 @@ class SearchForm extends Component {
       </React.Fragment>
     );
   }
-};
+}
 
 
 const mapStateToProps = (state) => ({
