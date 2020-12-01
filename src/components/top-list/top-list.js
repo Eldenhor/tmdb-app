@@ -20,7 +20,7 @@ class TopList extends Component {
   render() {
     return (
       <React.Fragment>
-        <h4 className="d-flex justify-content-center mt-4">Top List</h4>
+        <h4 className="d-flex justify-content-center mt-4">Popular Movies</h4>
         <div className="movie-list">
           <MovieCardContainer
             movieList={this.props.movieList}/>
