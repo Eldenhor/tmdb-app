@@ -14,6 +14,10 @@ const movie = (movie = initialState, action) => {
       return {
         error: action.payload.response.data.status_message
       };
+    case "CLEAR_MOVIE":
+      return {
+        ...initialState
+      };
     default:
       return movie;
   }

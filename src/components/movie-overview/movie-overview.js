@@ -1,8 +1,8 @@
-import "./movie-details.css";
+import "./movie-overview.css";
 
 import React from "react";
 
-const MovieDetails = ({movie}) => {
+const MovieOverview = ({movie}) => {
 
   const {overview, original_title, tagline} = movie;
 
@@ -23,4 +23,4 @@ const MovieDetails = ({movie}) => {
   );
 };
 
-export default MovieDetails;
+export default MovieOverview;
