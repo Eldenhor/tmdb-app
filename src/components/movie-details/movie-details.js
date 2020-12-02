@@ -1,4 +1,4 @@
-import "./MovieDetails.css";
+import "./movie-details.css";
 
 import React from "react";
 import { formatDate, formatMoney } from "../../helpers";

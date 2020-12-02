@@ -12,13 +12,13 @@
 }
 
 .badge-success {
-    background-color: #ff8d00;
+    background-color: #ff6600;
     position: absolute;
     bottom: 174px;
     left: -4px;
     z-index: 100;
     font-size: 18px;
-    padding: 2px
+    padding-left: 10px;
 }
 
 .no-image {
