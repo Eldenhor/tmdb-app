@@ -4,7 +4,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getMovie, clearMovie } from "../../actions/getMovieAction";
 
-import MovieDetails from "../MovieDetails";
+import MovieDetails from "../movie-details";
 import Spinner from "../spinner";
 
 class MovieDetailsContainer extends Component {
