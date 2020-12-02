@@ -10,7 +10,6 @@ import MovieOverview from "../movie-overview";
 
 const MovieCardContainer = ({movieList, push}) => {
   const showId = (id) => {
-    console.log(id);
     push(`/movie/${id}`);
   };
 

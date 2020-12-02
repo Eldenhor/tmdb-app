@@ -23,8 +23,6 @@ class MovieDetailsContainer extends Component {
   };
 
   render() {
-    console.log(this.props.ownProps.match.params.id);
-    console.log(this.props.movie);
 
     if (this.props.movie.error) {
       return <h3>{this.props.movie.error}</h3>;
