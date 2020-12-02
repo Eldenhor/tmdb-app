@@ -6,13 +6,15 @@ import { formatDate, formatMoney } from "../../helpers";
 const MovieDetails = ({movie}) => {
 
   const imagePoster = movie.poster_path
-    ? <img src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}/>
+    ? <img src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`} alt="poster"/>
     : <div>no image</div>;
+
+  let countryId = 1;
 
   const country = movie.production_countries
     ? movie.production_countries.map((item) => {
       return (
-        <div>
+        <div key={countryId++}>
           {item.name}
         </div>
       );
