@@ -1,4 +1,5 @@
 import "./movie-card.css";
+import posterPlaceholder from "../../images/movie-poster-placeholder.png";
 
 import React from "react";
 
@@ -8,7 +9,7 @@ const MovieCard = ({movie}) => {
 
   const poster = poster_path ?
     <img src={`https://image.tmdb.org/t/p/w185${poster_path}`} alt="movie"/>
-    : <div className="no-image"> test </div>;
+    : <img src={posterPlaceholder} alt="movie"/>;
 
   return (
     <div className="movie-card">
