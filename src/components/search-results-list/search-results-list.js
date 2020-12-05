@@ -51,6 +51,7 @@ class SearchResultsList extends Component {
     if (searchValue) {
       this.props.getSearchList(searchValue, page);
     }
+
   };
 
 

@@ -1,11 +1,12 @@
 import axios from "axios";
+import apiKey from "../config/tmdbConfig";
 
 // const _apiBase = "https://api.themoviedb.org/3/movie/";
 const _apiRest = "?api_key=de9b386a812a66fa48661258fd6c8359&language=en-US";
 
 export const getTopList = (page = 1) => (dispatch) => {
   // axios.get(`${_apiBase}top_rated${_apiRest}&page=${page}`)
-  axios.get(`https://api.themoviedb.org/3/movie/now_playing?api_key=de9b386a812a66fa48661258fd6c8359&language=en-US&page=${page}`)
+  axios.get(`https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&language=en-US&page=${page}`)
     .then(data => {
       dispatch({
         type: "GET_MOVIE_LIST_SUCCESS",

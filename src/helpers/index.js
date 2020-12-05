@@ -11,3 +11,15 @@ export const formatMoney = (money) => {
   return "unknown";
 };
 
+export const formatUserData = (user, favoriteMovies) => {
+  const {uid, email, displayName} = user;
+
+  return {
+    isLoggedIn: true,
+    userId: uid,
+    email,
+    displayName,
+    favoriteMovies
+  };
+};
+

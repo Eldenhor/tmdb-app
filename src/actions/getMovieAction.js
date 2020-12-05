@@ -1,7 +1,8 @@
 import axios from "axios";
+import apiKey from "../config/tmdbConfig";
 
 export const getMovie = (id) => dispatch => {
-  axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=de9b386a812a66fa48661258fd6c8359&language=en-US`)
+  axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=en-US`)
     .then(data => {
       dispatch({
         type: "GET_MOVIE_SUCCESS",
@@ -20,3 +21,7 @@ export const getMovie = (id) => dispatch => {
 export const clearMovie = () => dispatch => {
   dispatch({type: "CLEAR_MOVIE"});
 };
+
+// export const addMovieToFavorite = (movieId, userId) => dispatch => {
+//   axios.get();
+// };
