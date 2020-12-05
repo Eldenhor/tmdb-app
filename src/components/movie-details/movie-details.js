@@ -1,4 +1,5 @@
 import "./movie-details.css";
+import posterPlaceholder from "../../images/movie-poster-placeholder.png";
 
 import React from "react";
 import { formatDate, formatMoney } from "../../helpers";
@@ -6,8 +7,11 @@ import { formatDate, formatMoney } from "../../helpers";
 const MovieDetails = ({movie}) => {
 
   const imagePoster = movie.poster_path
-    ? <img src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`} alt="poster"/>
-    : <div>no image</div>;
+    ? <img src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
+           alt="poster"/>
+    : <img className="movie-details-image"
+           src={posterPlaceholder}
+           alt="poster"/>;
 
   let countryId = 1;
 

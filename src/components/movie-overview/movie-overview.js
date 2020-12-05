@@ -6,10 +6,12 @@ const MovieOverview = ({movie}) => {
 
   const {overview, original_title, tagline} = movie;
 
+  let sliceLength = original_title.length > 25 ? 120 : 160;
+
   const sliceOverview = (overview) => {
     const textLength = overview.length;
-    if (textLength > 200) {
-      return overview.slice(0, 200) + "...";
+    if (textLength > sliceLength) {
+      return overview.slice(0, sliceLength) + "...";
     }
     return overview;
   };
