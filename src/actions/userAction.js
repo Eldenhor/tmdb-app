@@ -14,7 +14,9 @@ export const createUser = ({email, password}) => dispatch => {
 export const logIn = ({email, password}) => dispatch => {
   firebase.auth().signInWithEmailAndPassword(email, password)
     .then((user) => {
-      const userData = formatUserData(user);
+      const userData = formatUserData(user.user, null);
+      console.log(user);
+      console.log(userData);
       dispatch({
         type: "FILL_USER",
         payload: userData

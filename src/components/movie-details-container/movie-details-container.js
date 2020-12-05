@@ -2,7 +2,11 @@ import "./movie-details-container.css";
 
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getMovie, clearMovie } from "../../actions/getMovieAction";
+import {
+  getMovie,
+  clearMovie,
+  addMovieToFavorite
+} from "../../actions/getMovieAction";
 
 import MovieDetails from "../movie-details";
 import Spinner from "../spinner";
@@ -22,6 +26,11 @@ class MovieDetailsContainer extends Component {
     this.props.getMovie(id);
   };
 
+  addToFavorite = () => {
+    const {movie, user} = this.props;
+    this.props.addMovieToFavorite(movie.id, user.userId);
+  };
+
   render() {
 
     if (this.props.movie.error) {
@@ -34,7 +43,8 @@ class MovieDetailsContainer extends Component {
 
 
     return (
-      <MovieDetails movie={this.props.movie}/>
+      <MovieDetails movie={this.props.movie}
+                    addToFavorite={this.addToFavorite}/>
     );
   }
 
@@ -42,12 +52,14 @@ class MovieDetailsContainer extends Component {
 
 const mapStateToProps = (state, ownProps) => ({
   movie: state.movie,
+  user: state.user,
   ownProps
 });
 
 const mapDispatchToProps = dispatch => ({
   getMovie: (id) => dispatch(getMovie(id)),
-  clearMovie: (id) => dispatch(clearMovie(id))
+  clearMovie: (id) => dispatch(clearMovie(id)),
+  addMovieToFavorite: (movieId, userId) => dispatch(addMovieToFavorite(movieId, userId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MovieDetailsContainer);
