@@ -21,6 +21,9 @@ class SignupModal extends Component {
     errorEmail: ""
   };
 
+  componentWillUnmount() {
+    this.handleClose();
+  }
 
   handleClose = () => {
     this.props.closeModal();
