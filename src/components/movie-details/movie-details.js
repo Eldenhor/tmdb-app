@@ -3,8 +3,10 @@ import posterPlaceholder from "../../images/movie-poster-placeholder.png";
 
 import React from "react";
 import { formatDate, formatMoney } from "../../helpers";
+import Button from "@material-ui/core/Button";
 
-const MovieDetails = ({movie}) => {
+
+const MovieDetails = ({movie, addToFavorite}) => {
 
   const imagePoster = movie.poster_path
     ? <img src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
@@ -34,6 +36,10 @@ const MovieDetails = ({movie}) => {
           <div className="movie-details-image">
             {imagePoster}
             <h4 className="movie-details-vote">rating {movie.vote_average}</h4>
+            <Button variant="contained"
+                    onClick={addToFavorite}>
+              Add to Favorite
+            </Button>
           </div>
         </div>
 

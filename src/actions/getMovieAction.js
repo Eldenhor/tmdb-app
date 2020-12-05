@@ -1,3 +1,4 @@
+import firebase from "firebase";
 import axios from "axios";
 import apiKey from "../config/tmdbConfig";
 
@@ -22,6 +23,9 @@ export const clearMovie = () => dispatch => {
   dispatch({type: "CLEAR_MOVIE"});
 };
 
-// export const addMovieToFavorite = (movieId, userId) => dispatch => {
-//   axios.get();
-// };
+export const addMovieToFavorite = (movieId, userId) => dispatch => {
+  axios.get(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=en-US`)
+    .then(data => {
+      firebase.database().ref(`users/${userId}/favoriteMovies/${movieId}`).set({...data.data});
+    });
+};
