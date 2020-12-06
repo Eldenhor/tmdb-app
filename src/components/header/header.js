@@ -1,7 +1,8 @@
+import "./header.css";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import "./header.css";
 import { Link } from "react-router-dom";
+import { push } from "connected-react-router";
 import SearchForm from "../search-form";
 import SignupModal from "../signup-modal";
 import LoginModal from "../login-modal/login-modal";
@@ -29,22 +30,32 @@ class Header extends Component {
   render() {
 
     const buttons = this.props.user.isLoggedIn
-      ? (<button className="btn btn-primary ml-2"
-                 onClick={this.logout}>Logout</button>)
-      : (<React.Fragment>
-        <button className="btn btn-primary"
-                onClick={this.openLoginModal}>
-          Login
-        </button>
-        <button className="btn btn-primary ml-2"
-                onClick={this.openSignupModal}>
-          Signup
-        </button>
-        <SignupModal isOpen={this.state.isModalSignupOpen}
-                     closeModal={this.closeSignupModal}/>
-        <LoginModal isOpen={this.state.isModalLoginOpen}
-                    closeModal={this.closeLoginModal}/>
-      </React.Fragment>);
+      ? (
+        <React.Fragment>
+          <button className="btn btn-info ml-2"
+                  onClick={() => this.props.push("/favorites/")}>
+            Favorites
+          </button>
+          <button className="btn btn-primary ml-2"
+                  onClick={this.logout}>
+            Logout
+          </button>
+        </React.Fragment>)
+      : (
+        <React.Fragment>
+          <button className="btn btn-primary"
+                  onClick={this.openLoginModal}>
+            Login
+          </button>
+          <button className="btn btn-primary ml-2"
+                  onClick={this.openSignupModal}>
+            Signup
+          </button>
+          <SignupModal isOpen={this.state.isModalSignupOpen}
+                       closeModal={this.closeSignupModal}/>
+          <LoginModal isOpen={this.state.isModalLoginOpen}
+                      closeModal={this.closeLoginModal}/>
+        </React.Fragment>);
 
     return (
       <div className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -66,7 +77,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = dispatch => ({
   firebaseState: () => dispatch(firebaseState()),
-  logout: () => dispatch(logout())
+  logout: () => dispatch(logout()),
+  push: (query) => dispatch(push(query))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

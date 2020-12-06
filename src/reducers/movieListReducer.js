@@ -16,6 +16,14 @@ const movieList = (movieList = initialState, action) => {
         ],
         loaded: true
       };
+    case "GET_FAVORITE_LIST":
+      return {
+        movieListData: [
+          ...movieList.movieListData,
+          ...action.payload,
+        ],
+        loaded: true
+      };
     case "GET_MOVIE_LIST_FAILURE":
       return {
         error: action.payload.error,
