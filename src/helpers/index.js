@@ -23,3 +23,14 @@ export const formatUserData = (user, favoriteMovies) => {
   };
 };
 
+export const formatMovieData = (data) => {
+  const {id, overview, poster_path, tagline, original_title} = data;
+
+  return {
+    id,
+    overview,
+    poster_path,
+    tagline,
+    original_title
+  }
+}

@@ -3,10 +3,9 @@ import posterPlaceholder from "../../images/movie-poster-placeholder.png";
 
 import React from "react";
 import { formatDate, formatMoney } from "../../helpers";
-import Button from "@material-ui/core/Button";
 
 
-const MovieDetails = ({movie, addToFavorite}) => {
+const MovieDetails = ({movie, addToFavorite, isFavorite, removeFavorite}) => {
 
   const imagePoster = movie.poster_path
     ? <img src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
@@ -27,6 +26,14 @@ const MovieDetails = ({movie, addToFavorite}) => {
     })
     : <div>unknown</div>;
 
+  const favoriteButton = isFavorite
+    ? <button className="btn btn-info"
+              onClick={removeFavorite}>In Favorites</button>
+    : (<button className="btn btn-outline-primary"
+               onClick={addToFavorite}>
+      Add to favorites
+    </button>);
+
 
   return (
     <div className="movie-details-bg">
@@ -35,11 +42,12 @@ const MovieDetails = ({movie, addToFavorite}) => {
         <div className="column-left">
           <div className="movie-details-image">
             {imagePoster}
-            <h4 className="movie-details-vote">rating {movie.vote_average}</h4>
-            <Button variant="contained"
-                    onClick={addToFavorite}>
-              Add to Favorite
-            </Button>
+            <div className="text-center">
+              <h4
+                className="movie-details-vote">rating {movie.vote_average}
+              </h4>
+              {favoriteButton}
+            </div>
           </div>
         </div>
 

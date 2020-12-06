@@ -1,6 +1,7 @@
 import firebase from "firebase";
 import axios from "axios";
 import apiKey from "../config/tmdbConfig";
+import { formatMovieData } from "../helpers";
 
 export const getMovie = (id) => dispatch => {
   axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=en-US`)
@@ -26,6 +27,11 @@ export const clearMovie = () => dispatch => {
 export const addMovieToFavorite = (movieId, userId) => dispatch => {
   axios.get(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=en-US`)
     .then(data => {
-      firebase.database().ref(`users/${userId}/favoriteMovies/${movieId}`).set({...data.data});
+      const formattedMovieData = formatMovieData(data.data);
+      firebase.database().ref(`users/${userId}/favoriteMovies/${movieId}`).set({...formattedMovieData});
     });
+};
+
+export const removeFavorite = (movieId, userId) => dispatch => {
+  firebase.database().ref(`users/${userId}/favoriteMovies/${movieId}`).remove();
 };
