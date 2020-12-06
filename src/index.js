@@ -3,7 +3,7 @@ import ReactDom from "react-dom";
 import { Provider } from "react-redux";
 import { ConnectedRouter } from "connected-react-router";
 import configureStore, { history } from "./store";
-import firebase from "firebase";
+import firebase from "firebase/app";
 
 import firebaseConfig from "./config/firebaseConfig";
 import routes from "./routes";
