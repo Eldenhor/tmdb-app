@@ -27,7 +27,6 @@ class FavoritesList extends Component {
   }
 
   updateFavoriteList = () => {
-    console.log("update fav");
     // this.props.clearMovieList();
     if (this.props?.user?.favoriteMovies !== undefined) {
       this.props.getFavoriteList(Object.keys(this.props.user.favoriteMovies));

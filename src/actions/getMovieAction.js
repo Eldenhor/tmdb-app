@@ -1,4 +1,5 @@
-import firebase from "firebase";
+import firebase from "firebase/app";
+import "firebase/database";
 import axios from "axios";
 import apiKey from "../config/tmdbConfig";
 import { formatMovieData } from "../helpers";

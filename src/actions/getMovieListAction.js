@@ -26,8 +26,6 @@ export const getTopList = (page = 1) => (dispatch) => {
 
 export const getFavoriteList = (moviesIds = {}) => (dispatch) => {
 
-  console.log(moviesIds);
-
   const favoriteMoviesList = moviesIds.map((movie) => {
     return (
       axios.get(`https://api.themoviedb.org/3/movie/${movie}?api_key=${apiKey}&language=en-US`)
@@ -39,7 +37,6 @@ export const getFavoriteList = (moviesIds = {}) => (dispatch) => {
 
   Promise.all(favoriteMoviesList)
     .then(data => {
-      console.log(data);
       dispatch({
         type: "GET_FAVORITE_LIST",
         payload: data
