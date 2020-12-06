@@ -24,6 +24,29 @@ export const getTopList = (page = 1) => (dispatch) => {
     });
 };
 
+export const getFavoriteList = (moviesIds = {}) => (dispatch) => {
+
+  console.log(moviesIds);
+
+  const favoriteMoviesList = moviesIds.map((movie) => {
+    return (
+      axios.get(`https://api.themoviedb.org/3/movie/${movie}?api_key=${apiKey}&language=en-US`)
+        .then(movie => {
+          return movie.data;
+        })
+    );
+  });
+
+  Promise.all(favoriteMoviesList)
+    .then(data => {
+      console.log(data);
+      dispatch({
+        type: "GET_FAVORITE_LIST",
+        payload: data
+      });
+    });
+};
+
 export const getSearchList = (query, page = 1) => (dispatch) => {
   axios.get(`https://api.themoviedb.org/3/search/movie${_apiRest}&query=${query}&page=${page}`)
     .then(data => {

@@ -15,8 +15,6 @@ export const logIn = ({email, password}) => dispatch => {
   firebase.auth().signInWithEmailAndPassword(email, password)
     .then((user) => {
       const userData = formatUserData(user.user, null);
-      console.log(user);
-      console.log(userData);
       dispatch({
         type: "FILL_USER",
         payload: userData
@@ -34,11 +32,10 @@ export const firebaseState = () => (dispatch,) => {
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
       firebase.database().ref(`users/${user.uid}/favoriteMovies`).on(`value`, res => {
+
         const resMovies = res.val();
-        console.log(resMovies);
-
-
         const userData = formatUserData(user, resMovies);
+
         dispatch({type: "FILL_USER", payload: userData});
       });
     } else {

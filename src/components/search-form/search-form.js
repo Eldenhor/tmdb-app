@@ -77,7 +77,7 @@ class SearchForm extends Component {
       <React.Fragment>
         <input
           type="text"
-          className="form-control mr-sm-2"
+          className="search-form form-control mr-sm-2"
           placeholder="search"
           value={this.state.searchValue}
           onChange={this.handleChange}
