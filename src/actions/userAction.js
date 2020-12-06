@@ -35,14 +35,10 @@ export const firebaseState = () => (dispatch,) => {
     if (user) {
       firebase.database().ref(`users/${user.uid}/favoriteMovies`).on(`value`, res => {
         const resMovies = res.val();
-        const favoriteMovies = [];
+        console.log(resMovies);
 
-        for (let objKey in resMovies) {
-          resMovies[objKey].key = objKey;
-          favoriteMovies.push(resMovies[objKey]);
-        }
 
-        const userData = formatUserData(user, favoriteMovies);
+        const userData = formatUserData(user, resMovies);
         dispatch({type: "FILL_USER", payload: userData});
       });
     } else {
