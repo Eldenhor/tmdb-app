@@ -20,5 +20,5 @@
 }
 
 .disabled-star {
-    filter: saturate(0);
+    filter: saturate(0) opacity(25%);
 }
