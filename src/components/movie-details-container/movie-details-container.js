@@ -39,7 +39,7 @@ class MovieDetailsContainer extends Component {
 
   isFavorite = () => {
     const {user, movie} = this.props;
-    if (user.isLoggedIn && (typeof user.favoriteMovies !== "undefined")) {
+    if (user.isLoggedIn && (typeof user.favoriteMovies !== "undefined" && user.favoriteMovies !== null)) {
       // convert current favoriteMovies object keys to array
       // and return true if selected movie already in this array
       return !!Object.keys(user.favoriteMovies).find(element => element === movie.id.toString());
@@ -56,12 +56,12 @@ class MovieDetailsContainer extends Component {
       return <Spinner/>;
     }
 
-
     return (
       <MovieDetails movie={this.props.movie}
                     addToFavorite={this.addToFavorite}
                     removeFavorite={this.removeFavorite}
-                    isFavorite={this.isFavorite()}/>
+                    isFavorite={this.isFavorite()}
+                    isLoggedIn={this.props.user.isLoggedIn}/>
     );
   }
 
