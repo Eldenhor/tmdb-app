@@ -63,6 +63,8 @@ class Header extends Component {
     return (
       <div className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="header d-flex">
+          <a className="nav-link link"
+             href="https://github.com/Eldenhor/tmdb-app">GitHub</a>
           <Link className="navbar-brand" to="/">
             TMDB
           </Link>
