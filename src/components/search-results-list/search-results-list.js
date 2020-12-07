@@ -26,6 +26,10 @@ class SearchResultsList extends Component {
 
   }
 
+  componentWillUnmount() {
+    this.props.clearMovieList();
+  }
+
   componentDidUpdate(prevProps) {
     const newQuery = this.props.ownProps.match.params.query;
     const prevQuery = prevProps.ownProps.match.params.query;

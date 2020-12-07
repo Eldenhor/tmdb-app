@@ -24,7 +24,10 @@ class Header extends Component {
   openLoginModal = () => this.setState({isModalLoginOpen: true});
   closeLoginModal = () => this.setState({isModalLoginOpen: false});
 
-  logout = () => this.props.logout();
+  logout = () => {
+    this.props.logout();
+    this.props.push("/");
+  };
 
 
   render() {

@@ -5,7 +5,7 @@ import React from "react";
 import { formatDate, formatMoney } from "../../helpers";
 
 
-const MovieDetails = ({movie, addToFavorite, isFavorite, removeFavorite}) => {
+const MovieDetails = ({movie, addToFavorite, isFavorite, removeFavorite, isLoggedIn}) => {
 
   const imagePoster = movie.poster_path
     ? <img src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
@@ -46,7 +46,7 @@ const MovieDetails = ({movie, addToFavorite, isFavorite, removeFavorite}) => {
               <h4
                 className="movie-details-vote">rating {movie.vote_average}
               </h4>
-              {favoriteButton}
+              {isLoggedIn && favoriteButton}
             </div>
           </div>
         </div>
