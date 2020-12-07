@@ -9,6 +9,9 @@ import {
 } from "../../actions/getMovieListAction";
 
 class FavoritesList extends Component {
+  state = {
+    nodata: false
+  };
 
   componentDidMount() {
     this.updateFavoriteList();
@@ -19,11 +22,19 @@ class FavoritesList extends Component {
       if (prevProps.user !== this.props.user) {
         this.updateFavoriteList();
       }
+    } else {
+      if (this.state.nodata === false)
+        this.setState({
+          nodata: true
+        });
     }
   }
 
   componentWillUnmount() {
     this.props.clearMovieList();
+    this.setState({
+      nodata: false
+    });
   }
 
   updateFavoriteList = () => {
@@ -46,7 +57,9 @@ class FavoritesList extends Component {
       <React.Fragment>
         <h4 className="d-flex justify-content-center mt-4">Your Favorites</h4>
         <div className="favorite-list">
-          {favoriteList}
+          {this.state.nodata
+            ? <h6 className="text-muted">Your favorite list is empty</h6>
+            : favoriteList}
         </div>
       </React.Fragment>
     );
