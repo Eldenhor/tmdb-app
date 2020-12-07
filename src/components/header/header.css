@@ -1,9 +1,19 @@
 .header {
     max-width: 1000px;
-    width: 60%;
+    width: 70%;
     margin: auto;
 }
 
 .navbar-brand {
     font-size: 1.5rem;
+    padding: 0;
+    align-self: center;
+}
+
+.link {
+    color: #a8a8a8;
+    font-size: 18px;
+    padding: 0;
+    align-self: center;
+    margin-right: 18px;
 }
