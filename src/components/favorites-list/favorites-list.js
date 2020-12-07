@@ -28,7 +28,8 @@ class FavoritesList extends Component {
 
   updateFavoriteList = () => {
     // this.props.clearMovieList();
-    if (this.props?.user?.favoriteMovies !== undefined) {
+    if (this.props?.user?.favoriteMovies !== undefined && this.props?.user?.favoriteMovies !== null) {
+      this.props.clearMovieList();
       this.props.getFavoriteList(Object.keys(this.props.user.favoriteMovies));
       // console.log(Object.keys(this.props.user.favoriteMovies));
     }
@@ -37,7 +38,8 @@ class FavoritesList extends Component {
   render() {
 
     const favoriteList = (this.props.movieList.loaded === true)
-      ? <MovieCardContainer movieList={this.props.movieList}/>
+      ? <MovieCardContainer movieList={this.props.movieList}
+                            clearMovieList={this.props.clearMovieList}/>
       : <Spinner/>;
 
     return (
