@@ -1,4 +1,5 @@
 import "./movie-cards-container.css";
+import favIconStar from "../../images/fav-icon-star.png";
 
 import React from "react";
 import { push } from "connected-react-router";
@@ -43,11 +44,11 @@ const MovieCardContainer = ({movieList, push, removeFavorite, user, addMovieToFa
           isFavorite(movie.id)
             ? (<button className="btn add-remove-button"
                        onClick={() => removeFav(movie.id, user.userId)}>
-              &#11088;
+              <img src={favIconStar} alt="fav-icon-star"/>
             </button>)
             : (<button className="btn add-remove-button disabled-star"
                        onClick={() => addFav(movie.id, user.userId)}>
-              &#11088;
+              <img src={favIconStar} alt="fav-icon-star"/>
             </button>)
           : null
 
