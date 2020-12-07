@@ -1,12 +1,24 @@
- .movie-card-list-container {
-     margin-left: auto;
-     margin-right: auto;
-     display: flex;
-     justify-content: center;
-     flex-direction: column;
- }
+.movie-card-list-container {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
 
- .movie-card-container:hover {
-     outline: 1px solid #dcdcdc;
-     background: #f5f5f5;
- }
+.movie-card-container:hover {
+    outline: 1px solid #dcdcdc;
+    background: #f5f5f5;
+}
+
+.add-remove-button {
+    position: absolute;
+    transform: translate(540px, 27px);
+    z-index: 100;
+    font-size: 32px;
+}
+
+.disabled-star {
+    filter: saturate(0);
+}
