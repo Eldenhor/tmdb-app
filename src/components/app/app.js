@@ -3,10 +3,14 @@ import "./app.css";
 import React from "react";
 
 import TopList from "../top-list/top-list";
+import SelectSorting from "../select-sorting";
 
 const App = () => {
   return (
-    <TopList/>
+    <React.Fragment>
+      <SelectSorting/>
+      <TopList/>
+    </React.Fragment>
   );
 };
 
