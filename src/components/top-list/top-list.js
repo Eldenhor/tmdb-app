@@ -27,7 +27,7 @@ class TopList extends Component {
     if (window.pageYOffset >= this.topList.current.scrollHeight - window.innerHeight) {
       clearTimeout(this.timer);
       this.timer = setTimeout(() =>
-        this.props.getTopList(this.props.movieList.page + 1), 1000);
+        this.props.setPage(this.props.page + 1), 1000);
     }
   };
 

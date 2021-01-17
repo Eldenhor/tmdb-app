@@ -1,15 +1,18 @@
 import "./app.css";
 
-import React from "react";
+import React, { useState } from "react";
 
 import TopList from "../top-list/top-list";
-import SelectSorting from "../select-sorting";
+import FilterAndGenreContainer from "../filter-and-genre-container";
 
 const App = () => {
+
+  const [page, setPage] = useState(1);
+
   return (
     <React.Fragment>
-      <SelectSorting/>
-      <TopList/>
+      <FilterAndGenreContainer page={page} setPage={setPage}/>
+      <TopList page={page} setPage={setPage}/>
     </React.Fragment>
   );
 };

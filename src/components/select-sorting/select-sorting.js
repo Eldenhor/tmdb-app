@@ -1,10 +1,5 @@
 import "./select-sorting.css";
-
-import React, { useEffect, useState } from "react";
-
-import { connect } from "react-redux";
-import { getTopList, clearMovieList } from "../../actions/getMovieListAction";
-
+import React from "react";
 import {
   FormControl,
   makeStyles,
@@ -23,22 +18,16 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function SelectSorting({getTopList, clearMovieList}) {
+export default function SelectSorting({sorting, setSorting}) {
   const classes = useStyles();
-  const [sorting, setSorting] = useState("popularity.desc");
 
 
   const handleChange = (event) => {
     setSorting(event.target.value);
   };
 
-  useEffect(() => {
-    clearMovieList();
-    getTopList(1, sorting);
-  }, [sorting, clearMovieList, getTopList]);
-
   return (
-    <div className="d-flex justify-content-center">
+    <div>
       <FormControl className={classes.formControl}>
         <InputLabel id="demo-simple-select-label">Select Sorting</InputLabel>
         <Select
@@ -57,11 +46,4 @@ function SelectSorting({getTopList, clearMovieList}) {
       </FormControl>
     </div>
   );
-};
-
-const mapDispatchToProps = dispatch => ({
-  getTopList: (page, sorting) => dispatch(getTopList(page, sorting)),
-  clearMovieList: () => dispatch(clearMovieList())
-});
-
-export default connect(null, mapDispatchToProps)(SelectSorting);
+}
