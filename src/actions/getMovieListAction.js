@@ -50,7 +50,6 @@ export const getSearchList = (query, page = 1) => (dispatch) => {
         type: "GET_MOVIE_LIST_SUCCESS",
         payload: data
       });
-      console.log(`https://api.themoviedb.org/3/search/movie${_apiRest}&query=${query}&page=${page}`);
     })
     .catch(error => {
       dispatch({
