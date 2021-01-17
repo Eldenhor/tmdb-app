@@ -7,21 +7,34 @@ import { connect } from "react-redux";
 import { getTopList, clearMovieList } from "../../actions/getMovieListAction";
 
 class TopList extends Component {
+  timer = null;
 
   componentDidMount() {
     this.props.clearMovieList();
-    this.props.getTopList();
+
+    window.addEventListener("scroll", () => {
+      if (window.pageYOffset >= this.topList.current.scrollHeight - window.innerHeight) {
+        clearTimeout(this.timer);
+        this.timer = setTimeout(() =>
+            this.props.getTopList(this.props.movieList.page + 1)
+          , 1000);
+      }
+    });
   }
 
   componentWillUnmount() {
     this.props.clearMovieList();
   }
 
+  topList = React.createRef();
+
   render() {
+
     return (
       <React.Fragment>
         <h4 className="d-flex justify-content-center mt-4">Popular Movies</h4>
-        <div className="movie-list">
+        <div className="movie-list"
+             ref={this.topList}>
           <MovieCardContainer
             movieList={this.props.movieList}/>
         </div>
