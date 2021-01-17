@@ -4,9 +4,8 @@ import apiKey from "../config/tmdbConfig";
 // const _apiBase = "https://api.themoviedb.org/3/movie/";
 const _apiRest = "?api_key=de9b386a812a66fa48661258fd6c8359&language=en-US";
 
-export const getTopList = (page = 1) => (dispatch) => {
-  // axios.get(`${_apiBase}top_rated${_apiRest}&page=${page}`)
-  axios.get(`https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&language=en-US&page=${page}`)
+export const getTopList = (page = 1, sorting = "popularity.desc") => (dispatch) => {
+  axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&sort_by=${sorting}&page=${page}`)
     .then(data => {
       dispatch({
         type: "GET_MOVIE_LIST_SUCCESS",
@@ -52,6 +51,7 @@ export const getSearchList = (query, page = 1) => (dispatch) => {
         type: "GET_MOVIE_LIST_SUCCESS",
         payload: data
       });
+      console.log(`https://api.themoviedb.org/3/search/movie${_apiRest}&query=${query}&page=${page}`)
     })
     .catch(error => {
       dispatch({
