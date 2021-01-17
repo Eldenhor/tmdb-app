@@ -7,26 +7,29 @@ import { connect } from "react-redux";
 import { getTopList, clearMovieList } from "../../actions/getMovieListAction";
 
 class TopList extends Component {
+
   timer = null;
 
   componentDidMount() {
     this.props.clearMovieList();
 
-    window.addEventListener("scroll", () => {
-      if (window.pageYOffset >= this.topList.current.scrollHeight - window.innerHeight) {
-        clearTimeout(this.timer);
-        this.timer = setTimeout(() =>
-            this.props.getTopList(this.props.movieList.page + 1)
-          , 1000);
-      }
-    });
+    window.addEventListener("scroll", this.infiniteScroll);
   }
 
   componentWillUnmount() {
     this.props.clearMovieList();
+    window.removeEventListener("scroll", this.infiniteScroll);
   }
 
   topList = React.createRef();
+
+  infiniteScroll = () => {
+    if (window.pageYOffset >= this.topList.current.scrollHeight - window.innerHeight) {
+      clearTimeout(this.timer);
+      this.timer = setTimeout(() =>
+        this.props.getTopList(this.props.movieList.page + 1), 1000);
+    }
+  };
 
   render() {
 
